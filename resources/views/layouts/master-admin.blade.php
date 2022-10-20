@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+    <title>@yield('title')</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -17,7 +17,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="admin/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
 
     <!-- vendor css -->
     <link rel="stylesheet" href="admin/css/style.css">

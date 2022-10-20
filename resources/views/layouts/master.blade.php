@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
+    <title>@yield('title')</title>
 
     <!-- CSS FILES -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +16,8 @@
     <link href="css/bootstrap-icons.css" rel="stylesheet">
 
     <link href="css/templatemo-kind-heart-charity.css" rel="stylesheet">
+
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
     <!--
 
 TemplateMo 581 Kind Heart Charity
