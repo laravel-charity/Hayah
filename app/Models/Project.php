@@ -12,6 +12,7 @@ class Project extends Model
 {
     use HasFactory;
 
+    // Database Relationships
     public function donations()
     {
         return $this->hasMany(Donation::class);
@@ -25,5 +26,23 @@ class Project extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // Filter By Status
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['status'] ?? false) {
+            $query->where('status', 'like', '%' . request('status') . '%');
+        }
+
+        $category = Category::where("name", "like", '%' .  request("search") . '%')->first();
+
+        if ($filters['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('description', 'like', '%' . request('search') . '%')
+                ->orWhere('status', 'like', '%' . request('search') . '%')
+                ->orWhere('starting_date', 'like', '%' . request('search') . '%')
+                ->orWhere("category_id", "=", $category?->id);
+        }
     }
 }
