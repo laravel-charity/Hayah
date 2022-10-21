@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Volunteer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,4 +21,16 @@ class Volunteer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+        
+    protected $fillable = [
+       
+        'user_id',
+        'phone',
+        'city',
+        'description',
+        
+
+    ];
 }

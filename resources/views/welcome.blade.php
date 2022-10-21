@@ -1,3 +1,3 @@
-@extends('layouts.master')
-{{-- @extends('layouts.master-admin') --}}
 
+
+@extends('layouts.master-admin')
