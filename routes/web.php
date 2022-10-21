@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\NewsletterController;
+
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +21,13 @@ use App\Http\Controllers\NewsletterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// --------------------- landing page Routs --------------------
+Route::get('/', [ProjectController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/donate/{id}', [ProjectController::class,'donate']);
+
+Route::post('/donate/donateTo/{id}', [ProjectController::class, 'donateTo']);
+
 
 
 
@@ -35,11 +43,19 @@ Route::post('/users/store', [UsersController::class, 'store']);
 // Log User Out
 Route::post('/logout', [UsersController::class, 'logout']);
 
-// Show Login Form 
+// Show Login Form
 Route::get('/login', [UsersController::class, 'login'])->name('login')->middleware('guest');
 
 // Login User
 Route::post('users/authenticate', [UsersController::class, 'authenticate']);
+
+// Redirect to Google Sign in
+Route::get('/redirect', [UsersController::class, 'redirectToGoogle']);
+
+// Register User to Database or Sign Them In Using Google
+Route::get('/callback', [UsersController::class, 'handleGoogleCallback']);
+
+// -------------------------------------------------------------------------
 
 
 
@@ -93,5 +109,35 @@ route::post('volunteers',[VolunteerController::class ,'store']);
 
 
 
+
+
+
+
+// ---------------------Routes for Profile page-----------------------------
+
+// Profile User
+Route::get('profile', [ProfileController::class, 'index']);
+
+// show Edit Profile page
+Route::get('editProfile', [ProfileController::class, 'editData']);
+
+// show change password page
+Route::get('changepass', [ProfileController::class, 'showPassChange']);
+
+// update Profile info
+Route::post('update', [ProfileController::class, 'updateData']);
+
+// update user password
+Route::post('updatepass', [ProfileController::class, 'changePass']);
+
+// ------------------Routes for main pages----------------------------------------
+// Show all projects
+Route::get('/projects', [ProjectController::class, 'showAll']);
+
+// Filters Projects by Category
+Route::get('projects/{filter?}', [ProjectController::class, 'filterByCategory']);
+
+// Show Project Details
+Route::get('/project/{id}', [ProjectController::class, 'show']);
 
 

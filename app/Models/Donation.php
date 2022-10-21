@@ -14,4 +14,5 @@ class Donation extends Model
     {
         return $this->belongsTo(Project::class);
     }
+    protected $fillable = ['amount', 'project_id', 'name', 'email'];
 }
