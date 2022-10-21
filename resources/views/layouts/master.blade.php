@@ -8,93 +8,102 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
+    <title>@yield('title')</title>
 
-        <!-- CSS FILES -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS FILES -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-        <link href="/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-        <link href="/css/templatemo-kind-heart-charity.css" rel="stylesheet">
-        <!--
+    <link href="{{ asset('css/templatemo-kind-heart-charity.css') }}" rel="stylesheet">
 
-TemplateMo 581 Kind Heart Charity
 
-https://templatemo.com/tm-581-kind-heart-charity
 
--->
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
+
+
 
     </head>
 
     <body id="section_1">
 
-        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
-                    <span>
-                        Hayat
-                        <small>Non-profit Organization</small>
-                    </span>
-                </a>
+    <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
+                <span>
+                    Hayat
+                    <small>Non-profit Organization</small>
+                </span>
+            </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#top">Home</a>
-                        </li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" {{ request()->is('/') ? 'active' : '' }} href="#top">Home</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">Projects</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('projects*') ? 'active' : '' }}"
+                            href="/projects">Projects</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Volunteer</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
+                            href="#section_3">Volunteer</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">About</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ request()->is('about*') ? 'active' : '' }} href="#section_4">About</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_6">Contact</a>
-                        </li>
-
-                        <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="">Login</a>
-                        </li>
-
-
+                    <li class="nav-item">
+                        <a class="nav-link" {{ request()->is('contact*') ? 'active' : '' }}
+                            href="#section_6">Contact</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    @auth
                         {{-- if user logged in --}}
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5"
-                                id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">News</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
+                                    src="{{ asset('img/' . auth()->user()->image) }}" class="img-fluid avatar-image"
+                                    alt=""></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="news.html">News Listing</a></li>
-
-                                <li><a class="dropdown-item" href="news-detail.html">News Detail</a></li>
+                                <li><a class="dropdown-item" href="news.html">Profile</a></li>
+                                <form method="post" action="/logout">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        Logout
+                                    </button>
+                                </form>
                             </ul>
-                        </li> --}}
-                    </ul>
-                </div>
+                        </li>
+                    @else
+                        <li class="nav-item ms-3">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="/login">Login</a>
+                        </li>
+
+                    @endauth
+                </ul>
             </div>
         </nav>
 
         @yield('content')
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-12 mb-4">
-                        <img src="images/logo.png" class="logo img-fluid" alt="">
-                    </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-4">
+                    <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
+                </div>
 
                     <div class="col-lg-4 col-md-6 col-12 mb-4">
                         <h5 class="site-footer-title mb-3">Quick Links</h5>
@@ -181,16 +190,18 @@ https://templatemo.com/tm-581-kind-heart-charity
                     </div>
                 </div>
             </div>
-        </footer>
 
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/click-scroll.js"></script>
-        <script src="js/counter.js"></script>
-        <script src="js/custom.js"></script>
+        </div>
+    </footer>
 
-    </body>
+    <!-- JAVASCRIPT FILES -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    {{-- <script src="{{asset('js/click-scroll.js') }}"></script> --}}
+    <script src="{{ asset('js/counter.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+
+</body>
 
 </html>

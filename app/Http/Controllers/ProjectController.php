@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Donation;
+
 use App\Models\Project;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -28,71 +33,7 @@ class ProjectController extends Controller
         return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     // donate page
     public function donate($id)
     {
@@ -122,5 +63,27 @@ class ProjectController extends Controller
 
 
         return redirect()->intended('/')->with('message', 'Thank you for your donation');
+    }
+      
+//       ----------------------------------------------------
+    // Show All Projects and Filter Based on Search and Status
+    public function showAll()
+    {
+        return view('projects.projects', ['projects' => Project::filter(request(['status', 'search']))->paginate(6), 'categories' => Category::all()]);
+    }
+
+    // Filter Projects Based on Category
+    public function filterByCategory()
+    {
+        if (@request('filter')) {
+
+            return view('projects.projects', ['projects' => Project::where('category_id', @request('filter'))->filter(request(['status']))->paginate(6), 'categories' => Category::all()]);
+        }
+    }
+
+    // Show one Project Details
+    public function show($id)
+    {
+        return view('projects.show', ['project' => Project::find($id)]);
     }
 }
