@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// --------------------- landing page Routs --------------------
+Route::get('/', [ProjectController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/donate/{id}', [ProjectController::class,'donate']);
+
+Route::post('/donate/donateTo/{id}', [ProjectController::class, 'donateTo']);
