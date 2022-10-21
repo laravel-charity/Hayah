@@ -2,12 +2,70 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Donation;
+
 use App\Models\Project;
 use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //return landing page
+
+
+
+        $events = Project::orderBy('id', 'desc')->where('status', 'active')->take(3)->get();
+
+        $in_progress = Project::orderBy('id', 'desc')->where('status', 'in progress')->take(3)->get();
+
+        $accomplished = Project::orderBy('id', 'desc')->where('status', 'accomplished')->take(3)->get();
+
+        return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished]);
+    }
+
+
+    // donate page
+    public function donate($id)
+    {
+        $event = project::find($id);
+        return view('projects.donate', ['event' => $event]);
+    }
+
+    public function donateTo(Request $request)
+    {
+        $donation = new donation;
+        $request->validate([
+            'amount' => 'required_without:amount_text',
+            'amount_text' => 'required_without:amount',
+            'name'     => 'required|regex:/^[\pL\s\-]+$/u',
+            'email' => 'required|email',
+            'project_id' => 'required'
+        ]);
+        $donation->name = $request->name;
+        $donation->email = $request->email;
+        $donation->project_id = $request->project_id;
+        $donation->amount = $_POST['amount_text'];
+        if (isset($_POST['amount_text'])) {
+        } elseif (isset($_POST['amount'])) {
+            $donation->amount = $_POST['amount'];
+        }
+        $donation->save();
+
+
+        return redirect()->intended('/')->with('message', 'Thank you for your donation');
+    }
+      
+//       ----------------------------------------------------
     // Show All Projects and Filter Based on Search and Status
     public function showAll()
     {
