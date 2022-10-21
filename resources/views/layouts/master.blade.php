@@ -10,6 +10,15 @@
 
     <title>@yield('title')</title>
 
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+    <style></style>
+    <script type='text/javascript' src=''></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+
+    
+
     <!-- CSS FILES -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -90,61 +99,55 @@ https://templatemo.com/tm-581-kind-heart-charity
     </nav>
 
     @yield('content')
-
+    @yield('ourself')
     <footer class="site-footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-12 mb-4">
-                    <img src="images/logo.png" class="logo img-fluid" alt="">
+                <div class="col-lg-3 col-12 mb-4" >
+                    <img src="images/logo.png" class="logo img-fluid" alt="" >
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="col-lg-4 col-md-6 col-12 mb-4" >
                     <h5 class="site-footer-title mb-3">Quick Links</h5>
 
                     <ul class="footer-menu">
                         <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Newsroom</a></li>
+                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Home</a></li>
+                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Login</a></li>
+                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Projects</a></li>
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Causes</a></li>
+                       
 
+
+
+                        @if (auth()->user())
                         <li class="footer-menu-item"><a href="#" class="footer-menu-link">Become a
-                                volunteer</a></li>
+                            volunteer</a></li>
+                            @endif
+                       
 
                         <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-12 mx-auto">
-                    <h5 class="site-footer-title mb-3">Contact Infomation</h5>
-
-                    <p class="text-white d-flex mb-2">
-                        <i class="bi-telephone me-2"></i>
-
-                        <a href="tel: 305-240-9671" class="site-footer-link">
-                            305-240-9671
-                        </a>
-                    </p>
-
-                    <p class="text-white d-flex">
-                        <i class="bi-envelope me-2"></i>
-
-                        <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                            donate@charity.org
-                        </a>
-                    </p>
-
-                    <p class="text-white d-flex mt-3">
-                        <i class="bi-geo-alt me-2"></i>
-                        Akershusstranda 20, 0150 Oslo, Norway
-                    </p>
-
-                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
-                </div>
-            </div>
+                <div class="col-lg-4 col-md-6 col-12 mx-auto" style="padding-bottom:10px;">
+                    <form class="custom-form subscribe-form" action="newsletterform" method="post" style="width: 400px; ">
+                        @csrf
+                        <h5 class="mb-4">Newsletter Form</h5>
+                    
+                        <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
+                            class="form-control" placeholder="Email Address" required>
+                            @error('email')
+                            <div class="alert alert-danger" style="width:60%">{{ $message }}</div>
+                          @enderror
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" class="form-control">Subscribe</button>
+                        </div>
+                    </form>
         </div>
-
+{{-- 
         <div class="site-footer-bottom">
             <div class="container">
                 <div class="row">
@@ -183,7 +186,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
     <!-- JAVASCRIPT FILES -->
     <script src="js/jquery.min.js"></script>

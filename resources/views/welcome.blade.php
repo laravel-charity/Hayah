@@ -1,2 +1,2 @@
-{{-- @extends('layouts.master') --}}
+contact{{-- @extends('layouts.master') --}}
 @extends('layouts.master-admin')
