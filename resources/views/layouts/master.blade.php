@@ -18,13 +18,7 @@
     <link href="css/templatemo-kind-heart-charity.css" rel="stylesheet">
 
     <link rel="icon" href="images/logo.png" type="image/x-icon">
-    <!--
 
-TemplateMo 581 Kind Heart Charity
-
-https://templatemo.com/tm-581-kind-heart-charity
-
--->
 
 </head>
 

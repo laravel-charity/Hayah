@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('city');
             $table->string('description')->nullable();
-            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

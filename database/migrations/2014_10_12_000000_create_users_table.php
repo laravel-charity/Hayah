@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->default('profilepic.jpeg');
+            $table->string('image')->default('profilepic.jpg');// it jpg not jpeg
             $table->string('role')->default('user');
             $table->softDeletes();
             $table->string('google_id')->nullable();
