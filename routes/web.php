@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -33,3 +34,22 @@ Route::get('/login', [UsersController::class, 'login'])->name('login')->middlewa
 
 // Login User
 Route::post('users/authenticate', [UsersController::class, 'authenticate']);
+
+// Redirect to Google Sign in
+Route::get('/redirect', [UsersController::class, 'redirectToGoogle']);
+
+// Register User to Database or Sign Them In Using Google
+Route::get('/callback', [UsersController::class, 'handleGoogleCallback']);
+
+// -------------------------------------------------------------------------
+
+
+// ------------------Routes for main pages----------------------------------------
+// Show all projects
+Route::get('/projects', [ProjectController::class, 'showAll']);
+
+// Filters Projects by Category
+Route::get('projects/{filter?}', [ProjectController::class, 'filterByCategory']);
+
+// Show Project Details
+Route::get('/project/{id}', [ProjectController::class, 'show']);
