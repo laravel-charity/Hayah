@@ -120,7 +120,7 @@
                         <li class="footer-menu-item"><a href="#" class="footer-menu-link">Login</a></li>
                         <li class="footer-menu-item"><a href="#" class="footer-menu-link">Projects</a></li>
 
-                       
+
 
 
 
@@ -128,7 +128,7 @@
                         <li class="footer-menu-item"><a href="#" class="footer-menu-link">Become a
                             volunteer</a></li>
                             @endif
-                       
+
 
 
                             <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a>
@@ -141,7 +141,7 @@
                     <form class="custom-form subscribe-form" action="newsletterform" method="post" style="width: 400px; ">
                         @csrf
                         <h5 class="mb-4">Newsletter Form</h5>
-                    
+
                         <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
                             class="form-control" placeholder="Email Address" required>
                             @error('email')
