@@ -22,6 +22,7 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
 
 
+
         // if user was volunteer
         if (User::find($id)->volunteer) {
             // get information user when he was volunteer
@@ -103,13 +104,12 @@ class ProfileController extends Controller
      */
     public function updateData(Request $request)
     {
-        // dd($request->all());
         // get logged in user
         $user = Auth::user();
         //Assign the new values
         $user->name = $request->name;
 
-        if ($request->hasFile('image')) {
+       if ($request->hasFile('image')) {
             $user->image = $request->file('image')->store('logos', 'public');
         }
 

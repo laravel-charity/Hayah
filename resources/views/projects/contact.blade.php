@@ -11,6 +11,7 @@
                         <h2>Get in touch</h2>
 
 
+
                         <div class="contact-image-wrap d-flex flex-wrap">
                             <img src="images/1.png.png" class="img-fluid avatar-image" alt="">
 
@@ -19,6 +20,7 @@
                                 <p class="mb-0">osamadasooky6@gmail.com<strong></strong></p>
                             </div>
                         </div>
+
 
 
 

@@ -119,7 +119,7 @@ class UsersController extends Controller
             return $e;
         }
 
-        $finduser = User::where('google_id', $user->id)->first();
+        $finduser = DB::where('google_id', $user->id)->first();
 
         if ($finduser) {
 

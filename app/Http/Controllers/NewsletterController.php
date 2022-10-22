@@ -22,12 +22,14 @@ class NewsletterController extends Controller
     {
 
 
+
         $validate = $request->validate(
             [
                 'email' => 'required|unique:newsletters'
 
             ]
         );
+
 
         $newnewsletter = Newsletter::create($validate);
         return back();
