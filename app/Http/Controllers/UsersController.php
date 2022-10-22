@@ -89,7 +89,7 @@ class UsersController extends Controller
 
             // return redirect('/');
             return redirect()->intended('/dashboard');
-        } else {
+        } else if (Auth::attempt($formFields, $remember) && (Gate::denies('admin'))) {
             $request->session()->regenerate();
 
             // return redirect('/');
