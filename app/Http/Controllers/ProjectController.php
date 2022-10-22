@@ -43,6 +43,7 @@ class ProjectController extends Controller
 
     public function donateTo(Request $request)
     {
+        // dd($request->all());
         $donation = new donation;
         $request->validate([
             'amount' => 'required_without:amount_text',
@@ -54,13 +55,16 @@ class ProjectController extends Controller
         $donation->name = $request->name;
         $donation->email = $request->email;
         $donation->project_id = $request->project_id;
+
         $donation->user_id = $request->user_id;
+
 
         if ($request->amount_text == null) {
             $donation->amount = $request->amount;
         } else {
             $donation->amount = $request->amount_text;
         }
+
         $donation->save();
 
 

@@ -1,8 +1,17 @@
 @extends('layouts.master')
 
-@section('title' , 'profile')
+@section('title', 'profile')
 
 @section('content')
+
+        @if(session()->has('message'))
+        <div class="alert alert-success text-center">
+            {{ session()->get('message') }}
+        </div>
+        @endif
+
+
+
 
 <div class="container">
     <form class="custom-form volunteer-form my-5 mb-lg-0 " action="/update" method="post" role="form">
@@ -48,14 +57,16 @@
                 <input type="file" name="image" class="form-control" value="{{ $userData->image }}>">
             </div>
 
-        </div>
+            </div>
+
 
         <button type="submit" class="form-control w-auto px-5 mx-auto ">save</button>
 
 
-    </form>
-</div>
 
-</section>
+        </form>
+    </div>
+
+    </section>
 
 @endsection

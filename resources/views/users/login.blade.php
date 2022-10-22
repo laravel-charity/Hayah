@@ -33,16 +33,22 @@
                 <input type="checkbox" value="true" id="flexCheckChecked" checked name="remember" />
                 <label class="form-check-label small" for="flexCheckChecked">Remember me</label>
             </div>
-        </div>
 
-        <button type="submit" class="form-control w-50 mx-auto">Log In</button>
+     
 
-    </form>
-</div>
-<div class="container text-center">
-    <hr class="w-50 mx-auto">
-    <a href="/redirect" class=" btn w-50 mx-auto"> <i class="bi bi-google "></i>
-        Continue With Google</a>
-    <p class="my-3  text-center">Not a member? <a href="/register" class="text-decoration-underline">Sign Up</a></p>
-</div>
+
+
+            <button type="submit" class="form-control w-50 mx-auto">Log In</button>
+
+        </form>
+    </div>
+    <div class="container text-center">
+        <hr class="w-50 mx-auto">
+        <form action="/redirect" method="get" class="custom-form volunteer-form mb-0 py-0">
+            <button type="submit" class="form-control w-50 mx-auto"><i class="bi bi-google "></i> Continue With Google</button>
+        </form>
+        {{-- <a href="/redirect" class="custom-btn btn w-50 mx-auto"> Continue With Google</a> --}}
+        <p class="my-3  text-center">Not a member? <a href="/register" class="text-decoration-underline">Sign Up</a></p>
+    </div>
+
 @endsection

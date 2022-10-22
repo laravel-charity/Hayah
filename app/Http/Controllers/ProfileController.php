@@ -103,13 +103,12 @@ class ProfileController extends Controller
      */
     public function updateData(Request $request)
     {
-
         // get logged in user
         $user = Auth::user();
         //Assign the new values
         $user->name = $request->name;
-        if ($request->image != null) {
-            $user->image = $request->image;
+       if ($request->hasFile('image')) {
+            $user->image = $request->file('image')->store('logos', 'public');
         }
 
         if ($user->volunteer) {
