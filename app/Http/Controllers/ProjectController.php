@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Project;
+
+use App\Models\Category;
 use App\Models\Donation;
 
-use App\Models\Project;
-use App\Models\Category;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -44,6 +45,7 @@ class ProjectController extends Controller
     public function donateTo(Request $request)
     {
         // dd($request->all());
+        $user = Auth::user();
         $donation = new donation;
         $request->validate([
             'amount' => 'required_without:amount_text',
@@ -55,6 +57,8 @@ class ProjectController extends Controller
         $donation->name = $request->name;
         $donation->email = $request->email;
         $donation->project_id = $request->project_id;
+
+        $donation->user_id = $user->id;
 
         if ($request->amount_text == null) {
             $donation->amount = $request->amount;
@@ -75,7 +79,7 @@ class ProjectController extends Controller
         return view('projects.projects', [
             'projects' => Project::filter(request(['status', 'search']))->paginate(6),
             'categories' => Category::all()
-        ])->with('message','');
+        ])->with('message', '');
     }
 
     public function showAllWithMessage()
@@ -84,7 +88,7 @@ class ProjectController extends Controller
             'projects' => Project::filter(request(['status', 'search']))->paginate(6),
             'categories' => Category::all(),
 
-        ])->with('message' , 'Please choose the project that you would like to make a donation to.');
+        ])->with('message', 'Please choose the project that you would like to make a donation to.');
     }
     // Filter Projects Based on Category
     public function filterByCategory()

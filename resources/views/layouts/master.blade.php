@@ -67,9 +67,12 @@
                         <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="/contact">Contact</a>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav ms-auto">
                     @auth
                         {{-- if user logged in --}}
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
@@ -77,13 +80,22 @@
                                     alt=""></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                <form method="post" action="/logout">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        Logout
-                                    </button>
-                                </form>
+                                <li><a class="dropdown-item" href="/profile">View Profile</a></li>
+                                <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
+                                @if (Auth::user()->google_id == null)
+                                    <li>
+                                        <a class="dropdown-item" style="font-size:17px;" href="/changepass">Change
+                                            password</a>
+                                    </li>
+                                @endif
+                                <li>
+                                    <form method="post" action="/logout">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                     @else
@@ -122,7 +134,6 @@
                         <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
 
                         @if (auth()->user())
-
                             <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
                                     volunteer</a></li>
                         @endif
