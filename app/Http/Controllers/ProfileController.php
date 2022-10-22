@@ -103,6 +103,7 @@ class ProfileController extends Controller
      */
     public function updateData(Request $request)
     {
+
         // get logged in user
         $user = Auth::user();
         //Assign the new values
@@ -110,6 +111,15 @@ class ProfileController extends Controller
         if ($request->image != null) {
             $user->image = $request->image;
         }
+
+        if ($user->volunteer) {
+            $volunteer = Volunteer::where('user_id', $user->id)->first();
+            $volunteer->description = $request->description;
+            $volunteer->phone = $request->phone;
+            $volunteer->city = $request->city;
+            $volunteer->save();
+        }
+
         $user->save();
 
         return redirect('profile')->with('message', 'information changed successfully');

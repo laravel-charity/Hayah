@@ -21,7 +21,25 @@
                 <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
                     placeholder="Jackdoe@gmail.com" required value="{{ $userData->email }}" disabled>
             </div>
+            @if(Auth::user()->volunteer)
+            <div class=" col-12">
+                <label class="text-start fw-semibold " for="city">City</label>
+                <input type="text" name="city" id="city" class="form-control text-dark" required
+                    value="{{ $userData->volunteer->city }}">
+            </div>
+            <div class=" col-12">
+                <label class="text-start fw-semibold " for="phone">Phone</label>
+                <input type="text" name="phone" id="phone" class="form-control text-dark" required
+                    value="{{$userData->volunteer->phone}}" >
+            </div>
 
+            <div class=" col-12">
+                <label class="text-start fw-semibold " for="description">About</label>
+                <textarea type="text" name="description" id="description"
+                    class="form-control text-dark">{{ $userData->volunteer->description }}  </textarea>
+            </div>
+
+            @endif
             <label class="text-start fw-semibold " for="name">Profile photo</label>
             <div class=" col-12 d-flex align-items-end">
                 <div class="me-5">

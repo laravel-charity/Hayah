@@ -21,13 +21,14 @@ $donationAmount=$userData->donations->sum('amount');
             <div class="col-lg-5 col-md-5 col-12 ">
 
                 <div class=" d-flex flex-column align-items-start justify-content-center pt-5 ">
-                    <h2  style="text-transform: capitalize">{{ $userData->name }}</h2>
+                    <h2 style="text-transform: capitalize">{{ $userData->name }}</h2>
 
                     <p> <b> Email: </b> {{ $userData->email }}</p>
                     <p> <b> Donations: </b> {{ $donationCount }} </p>
-                    <p> <b>  Amount: </b> {{$donationAmount }} Jd</p>
+                    <p> <b> Amount: </b> {{$donationAmount }} Jd</p>
                     @if ($userData->volunteer != null)
                     <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>City</b>:{{ $userData->volunteer->city }}</p>
+                    <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>Phone</b>:{{ $userData->volunteer->phone }}</p>
                     <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>About</b>:{{ $userData->volunteer->description }}</p>
                     @endif
 

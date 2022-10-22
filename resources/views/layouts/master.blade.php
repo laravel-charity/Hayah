@@ -71,6 +71,8 @@
                     <ul class="navbar-nav ms-auto">
                         @auth
                         {{-- if user logged in --}}
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
@@ -80,9 +82,11 @@
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/profile">View Profile</a></li>
                                 <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
+                                @if (Auth::user()->google_id == null)
                                 <li>
-                                    <a class="dropdown-item" href="/changepass">Change password</a>
+                                    <a class="custom-btn" style="font-size:17px;" href="/changepass">Change password</a>
                                 </li>
+                                @endif
                                 <li>
                                     <form method="post" action="/logout">
                                         @csrf
