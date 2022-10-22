@@ -9,79 +9,149 @@ https://templatemo.com/tm-581-kind-heart-charity
 /*---------------------------------------
   about                
 -----------------------------------------*/
-.
+
+.img_about {
+    width: 100%;
+    /* background-color:red; */
+    height: 80vh;
+    background-image: url("images/1.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_about {
+    width: 300px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.195);
+    border-radius: 20px;
+}
+.div_about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div_about > h3 {
+    /* color: white; */
+}
 
 
 /*---------------------------------------
   contact                
 -----------------------------------------*/
-/* // */
- .col-md-3 img{
-  width:100%;
-  height:auto;
+
+
+.img_contact {
+    width: 100%;
+    /* background-color:red; */
+    height: 50vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.div_contact {
+    width: 300px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.195);
+    border-radius: 20px;
+}
+.div_contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div_contact > h3 {
+    /* color: white; */
+    /* font-weight: bold; */
+}
+
+.col-md-3 {
+    display: inline-block;
+    margin-left: -4px;
+}
+.col-md-3 img {
+    width: 100%;
+    height: auto;
+}
+
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon {
+    background-color: #5bc1ac;
+}
+body .no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 div.card {
-  width: 270px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px #1b1b1b33;
-  margin: 25px;
-  transition: all 0.3s;
+    width: 280px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px #1b1b1b33;
+    margin: 15px;
+    transition: all 0.3s;
 }
 
 div.card-image {
-  width: 100%;
-  height: 230px;
-  border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 230px;
+    border-radius: 5px 5px 0 0;
 }
 
 div.card-image img {
-  width: 100%;
-  max-width: 100%;
-  height: 230px;
-  border-radius: 5px 5px 0 0;
-  transition: all 0.3s;
+    width: 100%;
+    max-width: 100%;
+    height: 230px;
+    border-radius: 5px 5px 0 0;
+    transition: all 0.3s;
 }
 
 div.card-description {
-  width: 100%;
-  height: auto;
-  background-color: #ffffff;
-  border-radius: 0 0 5px 5px;
-  padding: 25px;
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 0 0 5px 5px;
+    padding: 25px;
 }
 
 div.card-description h3 {
-  color: #222222;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 6px;
+    color: #222222;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 div.card-description p {
-  color: #5bc1ac;
-  font-size: 14px;
-  margin-bottom: 16px;
+    color: #5bc1ac;
+    font-size: 14px;
+    margin-bottom: 16px;
 }
 
 div.card-description a {
-  color: #5bc1ac;
-  font-weight: 500;
-  text-decoration: none;
-  text-transform: uppercase;
+    color: #5bc1ac;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 div.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 30px -5px rgba(10, 16, 34, 0.2);
-  cursor: pointer;
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px -5px rgba(10, 16, 34, 0.2);
+    cursor: pointer;
 }
 
 div.card-image img:hover {
-  opacity: 0.8}
-
-
-
+    opacity: 0.8;
+}
 
 @font-face {
     font-family: "Metropolis";
@@ -1720,5 +1790,10 @@ blockquote::before {
 }
 
 .accomplished-project {
-    background-color: var(--custom-btn-bg-color);
+    /* background-color: var(--custom-btn-bg-color); */
+    background-color: rgb(248, 188, 109);
+}
+
+.active-category {
+    background-color: rgba(89, 92, 93, 0.614);
 }

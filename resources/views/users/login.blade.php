@@ -3,6 +3,11 @@
 @section('title', 'Log in')
 
 @section('content')
+@if(session()->has('email'))
+    <div class="alert alert-danger text-center">
+        {{ session()->get('email') }}
+    </div>
+@endif
     <div class="container">
         <form class="custom-form volunteer-form my-5 mb-lg-0  pb-0" action="users/authenticate" method="post" role="form">
             @csrf
@@ -41,7 +46,10 @@
     </div>
     <div class="container text-center">
         <hr class="w-50 mx-auto">
-        <a href="/redirect" class="custom-btn btn w-50 mx-auto"> Continue With Google</a>
+        <form action="/redirect" method="get" class="custom-form volunteer-form mb-0 py-0">
+            <button type="submit" class="form-control w-50 mx-auto">Continue With Google</button>
+        </form>
+        {{-- <a href="/redirect" class="custom-btn btn w-50 mx-auto"> Continue With Google</a> --}}
         <p class="my-3  text-center">Not a member? <a href="/register" class="text-decoration-underline">Sign Up</a></p>
     </div>
 @endsection

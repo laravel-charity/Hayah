@@ -1,8 +1,18 @@
 @extends('layouts.master')
 
 @section('title', 'Projects')
-
 @section('content')
+
+    @if ($message != null)
+    <div class="alert alert-success text-center">
+        {{ $message }}
+    </div>
+    @endif
+@if(session()->has('message'))
+    <div class="alert alert-success text-center">
+        {{ session()->get('message') }}
+    </div>
+@endif
     <section class="section-padding">
 
         <div class="container">
@@ -24,7 +34,8 @@
                             All
                         </a>
                         @foreach ($categories as $category)
-                            <a href="/projects/{{ $category->id }}" class="tags-block-link">
+                            <a href="/projects/{{ $category->id }}"
+                                class="tags-block-link {{ request('filter') == $category->id ? 'active-category text-white' : '' }}">
                                 {{ $category->name }}
                             </a>
                         @endforeach
@@ -36,13 +47,17 @@
                             <span class="badge"> All </span>
                         </a>
                         <a href="?status=active">
-                            <span class="badge"> Active </span>
+                            <span class="badge {{ request('status') == 'active' ? 'active-project' : '' }}">
+                                Active </span>
                         </a>
-                        <a href="?status=started">
-                            <span class="badge"> Started </span>
+                        <a href="?status=in progress">
+                            <span
+                                class="badge {{ request('status') == 'in progress' ? 'in-progress-project text-dark' : '' }} ">
+                                In progress </span>
                         </a>
                         <a href="?status=completed">
-                            <span class="badge"> Completed </span>
+                            <span class="badge {{ request('status') == 'completed' ? 'accomplished-project' : '' }}">
+                                Completed </span>
                         </a>
                     </div>
 
@@ -59,7 +74,12 @@
                                     </a>
                                     <div class="custom-block">
                                         <div class="custom-block-body">
-                                            <span class="badge">{{ $project['status'] }}</span>
+                                            <span
+                                                class="badge @if ($project['status'] == 'completed') accomplished-project
+@elseif($project['status'] == 'in progress')
+in-progress-project text-dark
+@else
+active-project @endif">{{ $project['status'] }}</span>
                                             <h5 class="mb-3">{{ $project['name'] }}</h5>
                                             <p>Starting project: {{ $project['starting_date'] }}</p>
 
@@ -82,12 +102,13 @@
                                                 </p>
                                             </div>
                                         </div>
+
                                         <div class="d-flex">
                                             <a href="donate.html"
                                                 class="custom-btn btn @auth w-50 @else w-100 @endauth"><small>Donate
                                                 </small></a>
                                             @auth
-                                                <a href="donate.html" class="custom-btn btn w-50"><small>Volunteer</small></a>
+                                                <a href="volunteerInProject/{{ $project->id }}" class="custom-btn btn w-50"><small>Volunteer</small></a>
                                             @endauth
                                         </div>
                                     </div>

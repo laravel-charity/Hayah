@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <title>@yield('title')</title>
 
@@ -23,9 +23,9 @@
 
 
 
-    </head>
+</head>
 
-    <body id="section_1">
+<body id="section_1">
 
     <nav class="navbar navbar-expand-lg bg-light shadow-lg">
         <div class="container">
@@ -45,7 +45,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" {{ request()->is('/') ? 'active' : '' }} href="/">Home</a>
+
+                        <a class="nav-link {{ request()->is('/') || request()->is('home') ? 'active' : '' }}"
+                            href="/home">Home</a>
+
                     </li>
 
                     <li class="nav-item">
@@ -56,18 +59,16 @@
                     @if (auth()->user())
                            <li class="nav-item">
                         <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
-                            href="volunteer">Volunteer</a>
-                    </li>
-
-                    @endif
-
-                 <li class="nav-item">
-                        <a class="nav-link" {{ request()->is('contact*') ? 'active' : '' }}
-                            href="/contact">Contact</a>
+                            href="/volunteer">Volunteer</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" {{ request()->is('about*') ? 'active' : '' }} href="about">About</a>
+                        <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}" href="/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="/contact">Contact</a>
+
                     </li>
 
                     
@@ -78,11 +79,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
-                                    src="{{ asset('img/' . auth()->user()->image) }}" class="img-fluid avatar-image"
-                                    alt="" style="width:40px;height:40px"></a>
+
+                                    src="{{ asset('storage/' . auth()->user()->image) }}" class="img-fluid avatar-image"
+                                    alt=""></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+
                                 <form method="post" action="/logout">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
@@ -99,7 +102,7 @@
                     @endauth
                 </ul>
             </div>
-        </nav>
+    </nav>
 
 
     @yield('content')
@@ -113,65 +116,60 @@
                     <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
                 </div>
 
-                    <div class="col-lg-4 col-md-6 col-12 mb-4">
-                        <h5 class="site-footer-title mb-3">Quick Links</h5>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
 
 
-                        <ul class="footer-menu">
-                            <li class="footer-menu-item"><a href="about" class="footer-menu-link">Our Story</a></li>
+
+                    <ul class="footer-menu">
+
 
 
                         <li class="footer-menu-item"><a href="/" class="footer-menu-link">Home</a></li>
-
-                         @if (!auth()->user())           
-                        <li class="footer-menu-item"><a href="login" class="footer-menu-link">Login</a></li>
-                          @endif
-                          
-                        <li class="footer-menu-item"><a href="projects" class="footer-menu-link">Projects</a></li>
-                        <li class="footer-menu-item"><a href="contact" class="footer-menu-link">Contact</a></li>
-                     
-
-                       
-
-
+                        <li class="footer-menu-item"><a href="/about" class="footer-menu-link">Our Story</a></li>
+                        <li class="footer-menu-item"><a href="/register" class="footer-menu-link">Join Us</a></li>
+                        <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
 
                         @if (auth()->user())
-                        <li class="footer-menu-item"><a href="volunteer" class="footer-menu-link">Become a
-                            volunteer</a></li>
-                            @endif
-                       
 
 
-                            {{-- <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a> --}}
-                            </li>
-                        </ul>
-                    </div>
+                            <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
+                                    volunteer</a></li>
+                        @endif
+
+
+                    </ul>
+                </div>
+
 
 
                 <div class="col-lg-4 col-md-6 col-12 mx-auto" style="padding-bottom:10px;">
-                    <form class="custom-form subscribe-form" action="newsletterform" method="post" style="width: 400px; ">
+                    <form class="custom-form subscribe-form" action="newsletterform" method="post"
+                        style="width: 400px; ">
                         @csrf
                         <h5 class="mb-4">Newsletter Form</h5>
-                    
+
                         <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
                             class="form-control" placeholder="Email Address" required>
+
                             @error('email')
                             <div class="alert alert-danger" style="width:90%">{{ $message }}</div>
                           @enderror
+
                         <div class="col-lg-12 col-12">
                             <button type="submit" class="form-control">Subscribe</button>
                         </div>
                     </form>
-        </div>
+                </div>
 
 
-    <!-- JAVASCRIPT FILES -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
-    {{-- <script src="{{asset('js/click-scroll.js') }}"></script> --}}
-    <script src="{{ asset('js/counter.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
+                <!-- JAVASCRIPT FILES -->
+                <script src="{{ asset('js/jquery.min.js') }}"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+                <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+                {{-- <script src="{{ asset('js/click-scroll.js') }}"></script> --}}
+                <script src="{{ asset('js/counter.js') }}"></script>
+                <script src="{{ asset('js/custom.js') }}"></script>
 
 </body>
 
