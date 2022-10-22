@@ -9,6 +9,7 @@
     </div>
 @endif
 <div class="container">
+    
     <form class="custom-form volunteer-form my-5 mb-lg-0 text-center" action="/updatepass" method="post" role="form">
         @csrf
         <h3 class="mb-5">Change Password</h3>

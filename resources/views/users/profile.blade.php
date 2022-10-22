@@ -3,20 +3,29 @@
 @section('title', 'profile')
 {{-- {{ dd($userData->donations) }} --}}
 @section('content')
-    @if (session()->has('message'))
+
+  @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session()->get('message') }}
         </div>
     @endif
-    <section class="about-section section-padding">
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-lg-6 col-md-5 col-12 text-center ">
-                    <img src="{{ asset('storage/' . $userData->image) }} "
-                        class="ms-lg-auto bg-light shadow-lg img-fluid rounded-5" alt="">
-                </div>
 
-<div class="col-lg-5 col-md-5 col-12 ">
+
+{{-- calculate donatios amount and count --}}
+<?php
+$donationCount= $userData->donations->count();
+$donationAmount=$userData->donations->sum('amount');
+?>
+
+<section class="about-section section-padding">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-start ">
+            <div class="col-lg-4 col-md-4 col-12 text-center ">
+                <img width="300px" src="{{ asset('storage/' . $userData->image) }}  "
+                    class="ms-lg-auto bg-light shadow-lg img-fluid rounded-5" alt="">
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-12 ">
 
                 <div class=" d-flex flex-column align-items-start justify-content-center pt-5 ">
                     <h2 style="text-transform: capitalize">{{ $userData->name }}</h2>
@@ -30,17 +39,25 @@
                     <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>About</b>:{{ $userData->volunteer->description }}</p>
                     @endif
 
-
                 </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-12 d-none d-md-block  ">
+                <h3 class="custom-text-block d-flex justify-content-end"> <a href="/editProfile"><i
+                            class="bi bi-gear-fill "></i></a></h3>
+
+
             </div>
 <div class="col-lg-3 col-md-3 col-12 d-none d-md-block  ">
                 <h3 class="custom-text-block d-flex justify-content-end"> <a href="/editProfile"><i
                             class="bi bi-gear-fill "></i></a></h3>
 
+
             </div>
            
             </div>
 <hr class="mt-5">
+
             {{-- Projects user volunteered in --}}
             <div class="container row  about-section section-padding text-center">
                 <h2 class="custom-text "style="font-size:35px">Projects you volunteered in </h2>
@@ -110,6 +127,7 @@
             <span><a href="/donationto" class="custom-btn btn smoothscroll "> Make a Donation  </a></span>
             @endif
         </div>
+
 
         </div>
     </section>

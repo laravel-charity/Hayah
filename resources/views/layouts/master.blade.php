@@ -8,24 +8,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+        <title>@yield('title')</title>
 
-    <!-- CSS FILES -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- CSS FILES -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/templatemo-kind-heart-charity.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/templatemo-kind-heart-charity.css') }}" rel="stylesheet">
 
 
 
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 
 
 
 </head>
 
 <body id="section_1">
+
 
     <nav class="navbar navbar-expand-lg bg-light shadow-lg">
         <div class="container">
@@ -75,7 +76,10 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     @auth
+
                         {{-- if user logged in --}}
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
@@ -84,37 +88,48 @@
                                     alt=""></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
 
-                                <form method="post" action="/logout">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        Logout
-                                    </button>
-                                </form>
+
+                                <li><a class="dropdown-item" href="/profile">View Profile</a></li>
+                                <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
+                                @if (Auth::user()->google_id == null)
+                                <li>
+                                    <a class="custom-btn" style="font-size:17px;" href="/changepass">Change password</a>
+                                </li>
+                                @endif
+                                <li>
+                                    <form method="post" action="/logout">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+
                             </ul>
                         </li>
-                    @else
+                        @else
                         <li class="nav-item ms-3">
                             <a class="nav-link custom-btn custom-border-btn btn" href="login">Login</a>
                         </li>
 
-                    @endauth
-                </ul>
-            </div>
-    </nav>
 
-
-    @yield('content')
-
-
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-12 mb-4">
-                    <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
+                        @endauth
+                    </ul>
                 </div>
+        </nav>
+
+
+        @yield('content')
+
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-12 mb-4">
+                        <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
+                    </div>
 
                 <div class="col-lg-4 col-md-6 col-12 mb-4">
                     <h5 class="site-footer-title mb-3">Quick Links</h5>
@@ -129,6 +144,8 @@
                         <li class="footer-menu-item"><a href="/about" class="footer-menu-link">Our Story</a></li>
                         <li class="footer-menu-item"><a href="/register" class="footer-menu-link">Join Us</a></li>
                         <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
+
+
 
                         @if (auth()->user())
 
@@ -171,6 +188,7 @@
                 <script src="{{ asset('js/counter.js') }}"></script>
                 <script src="{{ asset('js/custom.js') }}"></script>
 
-</body>
+
+    </body>
 
 </html>
