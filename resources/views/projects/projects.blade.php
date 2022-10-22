@@ -3,16 +3,16 @@
 @section('title', 'Projects')
 @section('content')
 
-    @if ($message != null)
-    <div class="alert alert-success text-center">
-        {{ $message }}
-    </div>
+    @if ($message ?? false)
+        <div class="alert alert-success text-center">
+            {{ $message }}
+        </div>
     @endif
-@if(session()->has('message'))
-    <div class="alert alert-success text-center">
-        {{ session()->get('message') }}
-    </div>
-@endif
+    @if (session()->has('message'))
+        <div class="alert alert-success text-center">
+            {{ session()->get('message') }}
+        </div>
+    @endif
     <section class="section-padding">
 
         <div class="container">
@@ -20,8 +20,8 @@
                 <div class="col-lg-4">
                     <div class="col-12 col-lg-8">
                         <form class="custom-form search-form" action="/projects" role="form">
-                            <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search"
-                                value="{{ @request('search') }}">
+                            <input class="form-control" type="search" name="search" placeholder="Search"
+                                aria-label="Search" value="{{ @request('search') }}">
 
                             <button type="submit" class="form-control">
                                 <i class="bi-search"></i>
@@ -104,11 +104,12 @@ active-project @endif">{{ $project['status'] }}</span>
                                         </div>
 
                                         <div class="d-flex">
-                                            <a href="donate.html"
+                                            <a href="/donate/{{ $project->id }}"
                                                 class="custom-btn btn @auth w-50 @else w-100 @endauth"><small>Donate
                                                 </small></a>
                                             @auth
-                                                <a href="volunteerInProject/{{ $project->id }}" class="custom-btn btn w-50"><small>Volunteer</small></a>
+                                                <a href="/volunteerInProject/{{ $project->id }}"
+                                                    class="custom-btn btn w-50"><small>Volunteer</small></a>
                                             @endauth
                                         </div>
                                     </div>

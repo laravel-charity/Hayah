@@ -74,6 +74,7 @@
 
                     
                 </ul>
+
                 <ul class="navbar-nav ms-auto">
                     @auth
 
@@ -89,13 +90,14 @@
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
 
-
                                 <li><a class="dropdown-item" href="/profile">View Profile</a></li>
                                 <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
                                 @if (Auth::user()->google_id == null)
-                                <li>
-                                    <a class="custom-btn" style="font-size:17px;" href="/changepass">Change password</a>
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item" style="font-size:17px;" href="/changepass">Change
+                                            password</a>
+                                    </li>
+
                                 @endif
                                 <li>
                                     <form method="post" action="/logout">
@@ -148,7 +150,6 @@
 
 
                         @if (auth()->user())
-
 
                             <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
                                     volunteer</a></li>

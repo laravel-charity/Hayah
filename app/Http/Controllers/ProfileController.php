@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function index()
     {
 
-        $id =Auth::user()->id;
+        $id = Auth::user()->id;
 
 
 
@@ -108,6 +108,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         //Assign the new values
         $user->name = $request->name;
+
        if ($request->hasFile('image')) {
             $user->image = $request->file('image')->store('logos', 'public');
         }
