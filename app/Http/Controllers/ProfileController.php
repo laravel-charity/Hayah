@@ -18,8 +18,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        // $id =Auth::user()->id;
-        $id = 1;
+        $id =Auth::user()->id;
+        // $id = 6;
 
 
         // if user was volunteer

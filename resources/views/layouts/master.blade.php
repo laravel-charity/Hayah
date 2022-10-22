@@ -29,7 +29,7 @@
 
     <nav class="navbar navbar-expand-lg bg-light shadow-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
                 <span>
                     Hayat
@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" {{ request()->is('/') ? 'active' : '' }} href="#top">Home</a>
+                        <a class="nav-link" {{ request()->is('/') ? 'active' : '' }} href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
@@ -53,19 +53,24 @@
                             href="/projects">Projects</a>
                     </li>
 
-                    <li class="nav-item">
+                    @if (auth()->user())
+                           <li class="nav-item">
                         <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
-                            href="#section_3">Volunteer</a>
+                            href="volunteer">Volunteer</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" {{ request()->is('about*') ? 'active' : '' }} href="#section_4">About</a>
-                    </li>
+                    @endif
 
-                    <li class="nav-item">
+                 <li class="nav-item">
                         <a class="nav-link" {{ request()->is('contact*') ? 'active' : '' }}
-                            href="#section_6">Contact</a>
+                            href="/contact">Contact</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" {{ request()->is('about*') ? 'active' : '' }} href="about">About</a>
+                    </li>
+
+                    
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     @auth
@@ -74,10 +79,10 @@
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
                                     src="{{ asset('img/' . auth()->user()->image) }}" class="img-fluid avatar-image"
-                                    alt=""></a>
+                                    alt="" style="width:40px;height:40px"></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="news.html">Profile</a></li>
+                                <li><a class="dropdown-item" href="profile">Profile</a></li>
                                 <form method="post" action="/logout">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
@@ -113,25 +118,27 @@
 
 
                         <ul class="footer-menu">
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
+                            <li class="footer-menu-item"><a href="about" class="footer-menu-link">Our Story</a></li>
 
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Home</a></li>
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Login</a></li>
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Projects</a></li>
+                        <li class="footer-menu-item"><a href="/" class="footer-menu-link">Home</a></li>
+                        <li class="footer-menu-item"><a href="login" class="footer-menu-link">Login</a></li>
+                        <li class="footer-menu-item"><a href="projects" class="footer-menu-link">Projects</a></li>
+                        <li class="footer-menu-item"><a href="contact" class="footer-menu-link">Contact</a></li>
+                     
 
                        
 
 
 
                         @if (auth()->user())
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Become a
+                        <li class="footer-menu-item"><a href="volunteer" class="footer-menu-link">Become a
                             volunteer</a></li>
                             @endif
                        
 
 
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a>
+                            {{-- <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a> --}}
                             </li>
                         </ul>
                     </div>
@@ -145,7 +152,7 @@
                         <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
                             class="form-control" placeholder="Email Address" required>
                             @error('email')
-                            <div class="alert alert-danger" style="width:60%">{{ $message }}</div>
+                            <div class="alert alert-danger" style="width:90%">{{ $message }}</div>
                           @enderror
                         <div class="col-lg-12 col-12">
                             <button type="submit" class="form-control">Subscribe</button>

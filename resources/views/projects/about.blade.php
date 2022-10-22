@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-
+@section('title', 'About')
 @section('content')
 <section class="section-padding section-bg" id="section_2">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                <img src="images/3.png"
+                <img src="images/8.png.png"
                     class="custom-text-box-image img-fluid" alt="">
             </div>
 
@@ -95,8 +95,8 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/1.png.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
@@ -104,14 +104,15 @@
                   <p>Full Stack Devolepr</p>
                   
                 </div>
-              </div>        </div>    
+              </div>        
+            </div>    
         <div class="col-xs-3 col-sm-3 col-md-3">
 
 
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/jafer.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
@@ -125,8 +126,8 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/sara.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
@@ -139,8 +140,8 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/ibrahem.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
@@ -155,8 +156,8 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/mohammed.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
@@ -169,8 +170,8 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/Duaa.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
@@ -183,8 +184,8 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             <div class="card">
                 <div class="card-image">
-                  <a href="#">
-                    <img src="https://images.wallpaperscraft.com/image/man_paint_sky_129261_800x600.jpg" alt="img.jpg" />
+                  <a >
+                    <img src="images/Ahmad.png" alt="img.jpg" />
                   </a>
                 </div>
                 <div class="card-description">
