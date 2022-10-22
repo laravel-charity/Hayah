@@ -18,27 +18,35 @@ class ProfileController extends Controller
      */
     public function index()
     {
+
         $id =Auth::user()->id;
+
+
         // if user was volunteer
         if (User::find($id)->volunteer) {
             // get information user when he was volunteer
-            $volunteerProject = Volunteer::where("user_id",$id)->get();
+            $volunteerProject = Volunteer::where("user_id", $id)->get();
             // $volunteerProject = User::find($id)->volunteer;
-            return view('users.profile',
-            //get basic info for user from user_id
-            ['userData'         => User::find($id),
-            'volunteerProject' => $volunteerProject
-            ]);
-        }
-        else  // if user was not volunteer
+            return view(
+                'users.profile',
+                //get basic info for user from user_id
+                [
+                    'userData'         => User::find($id),
+                    'volunteerProject' => $volunteerProject
+                ]
+            );
+        } else  // if user was not volunteer
         {
             // get information user when he was volunteer
-            $volunteerProject = Volunteer::where("user_id",$id)->get();
-            return view('users.profile',
-            //get basic info for user base user_id
-            ['userData' => User::find($id),
-            'volunteerProject' => $volunteerProject
-        ]);
+            $volunteerProject = Volunteer::where("user_id", $id)->get();
+            return view(
+                'users.profile',
+                //get basic info for user base user_id
+                [
+                    'userData' => User::find($id),
+                    'volunteerProject' => $volunteerProject
+                ]
+            );
         }
     }
 
@@ -82,8 +90,8 @@ class ProfileController extends Controller
      */
     public function editData()
     {
-        $id =Auth::user()->id;
-        return view('users.profile-edit' , ['userData' => User::find($id)]);
+        $id = Auth::user()->id;
+        return view('users.profile-edit', ['userData' => User::find($id)]);
     }
 
     /**
@@ -95,17 +103,22 @@ class ProfileController extends Controller
      */
     public function updateData(Request $request)
     {
+        // dd($request->all());
         // get logged in user
-        $user =Auth::user();
+        $user = Auth::user();
         //Assign the new values
         $user->name = $request->name;
         $user->email = $request->email;
-        if ($request->image != null) {
-            $user->image = $request->image;
+        // if ($request->image != null) {
+        //     $user->image = $request->image;
+        // }
+        if ($request->hasFile('image')) {
+            $user->image = $request->file('image')->store('logos', 'public');
         }
+
         $user->save();
 
-        return redirect('profile')->with('message' , 'information changed successfully');
+        return redirect('profile')->with('message', 'information changed successfully');
     }
 
     public function showPassChange()
@@ -117,29 +130,31 @@ class ProfileController extends Controller
     public function changePass(Request $request)
     {
         // validate password
-        $request->validate([
-            'password_current'      => 'required',
-            'password_new'          => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required'
-        ],
-    [
-        'password_new.regex' => 'The password should have minimum eight characters,
+        $request->validate(
+            [
+                'password_current'      => 'required',
+                'password_new'          => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'required'
+            ],
+            [
+                'password_new.regex' => 'The password should have minimum eight characters,
         at least one letter, one number and one special character'
-    ]);
+            ]
+        );
 
         // get logged in user
-        $user =Auth::user();
+        $user = Auth::user();
         // check password current is correct
-        $checkPass =Hash::check($request->password_current ,$user->password);
+        $checkPass = Hash::check($request->password_current, $user->password);
 
-        if($checkPass){
+        if ($checkPass) {
             //Assign the new password
             $user->password = Hash::make($request->password_new);
             $user->save();
-            return redirect('profile')->with('message' , 'password changed successfully');
+            return redirect('profile')->with('message', 'password changed successfully');
         };
 
-        return redirect('changepass')->with('message' , 'invalid password ');
+        return redirect('changepass')->with('message', 'invalid password ');
     }
 
 

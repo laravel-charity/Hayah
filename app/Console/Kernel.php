@@ -19,12 +19,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
-            DB::table('projects')->whereDate('starting_date', '<', now())->update(['status' => 'started']);
+            DB::table('projects')->whereDate('starting_date', '<', now())->update(['status' => 'in progress']);
         })->everyMinute();
 
         $schedule->call(function () {
             $donations = DB::table('projects')->join('donations', 'projects.id', '=', 'donations.project_id')->select('projects.*, donations.amount')->sum('amount');
-            DB::table('projects')->where('projects.target_donations', '<=', $donations)->update(['status' => 'started', 'starting_date' => now()]);
+            DB::table('projects')->where('projects.target_donations', '<=', $donations)->update(['status' => 'in progress']);
         })->everyMinute();
     }
 
