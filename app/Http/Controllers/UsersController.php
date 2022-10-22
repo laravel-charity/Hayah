@@ -96,7 +96,7 @@ class UsersController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+        return back()->with('email' ,'Wrong Email or Password');
     }
 
     public function redirectToGoogle()

@@ -68,13 +68,24 @@ class ProjectController extends Controller
         return redirect()->intended('/')->with('message', 'Thank you for your donation');
     }
 
-    //       ----------------------------------------------------
+
     // Show All Projects and Filter Based on Search and Status
     public function showAll()
     {
-        return view('projects.projects', ['projects' => Project::filter(request(['status', 'search']))->paginate(6), 'categories' => Category::all()]);
+        return view('projects.projects', [
+            'projects' => Project::filter(request(['status', 'search']))->paginate(6),
+            'categories' => Category::all()
+        ])->with('message','');
     }
 
+    public function showAllWithMessage()
+    {
+        return view('projects.projects', [
+            'projects' => Project::filter(request(['status', 'search']))->paginate(6),
+            'categories' => Category::all(),
+
+        ])->with('message' , 'Please choose the project that you would like to make a donation to.');
+    }
     // Filter Projects Based on Category
     public function filterByCategory()
     {

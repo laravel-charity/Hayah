@@ -102,15 +102,17 @@ route::post('newsletterform', [NewsletterController::class, 'store']);
 
 
 // ---------------------Routes for volunteer-----------------------------
-route::get('volunteer', [VolunteerController::class, 'create'])->middleware('auth');
+
+route::get('volunteer',[VolunteerController::class,'create'])->middleware('auth');
+
 
 
 // Create New newsletter
 route::post('volunteers', [VolunteerController::class, 'store']);
 
 
-
-
+//chose the project that user would to volunteer in it
+route::get('volunteerInProject/{id}',[VolunteerController::class,'chooseProjectToVolunteer']);
 
 
 
@@ -134,6 +136,9 @@ Route::post('updatepass', [ProfileController::class, 'changePass']);
 // ------------------Routes for main pages----------------------------------------
 // Show all projects
 Route::get('/projects', [ProjectController::class, 'showAll']);
+
+// Show all projects from profile page with message
+Route::get('/donationto', [ProjectController::class, 'showAllWithMessage']);
 
 // Filters Projects by Category
 Route::get('projects/{filter?}', [ProjectController::class, 'filterByCategory']);

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 <section class="volunteer-section section-padding" id="section_4">
     <div class="container">
         <div class="row">
@@ -18,16 +19,16 @@
                             <input type="text" name="city" id="volunteer-name" class="form-control"
                                 placeholder="city" required>
 
-                                
+
                         </div>
-                
+
 
                         <div class="col-lg-6 col-12">
                             <input type="text" name="phone" id="volunteer-subject"
                                 class="form-control" placeholder="phone" required>
                         </div>
 
-                     
+
                     </div>
 
                     <textarea name="description" rows="3" class="form-control" id="volunteer-message"
@@ -38,7 +39,7 @@
             </div>
 
             <div class="col-lg-6 col-12">
-                <img src="images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg"
+                <img src="{{ asset('images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg') }}"
                     class="volunteer-image img-fluid" alt="">
 
                 <div class="custom-block-body text-center">
@@ -51,5 +52,5 @@
 
         </div>
     </div>
-</section>  
+</section>
 @endsection

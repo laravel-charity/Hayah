@@ -1,8 +1,18 @@
 @extends('layouts.master')
 
 @section('title', 'Projects')
-
 @section('content')
+
+    @if ($message != null)
+    <div class="alert alert-success text-center">
+        {{ $message }}
+    </div>
+    @endif
+@if(session()->has('message'))
+    <div class="alert alert-success text-center">
+        {{ session()->get('message') }}
+    </div>
+@endif
     <section class="section-padding">
 
         <div class="container">
@@ -92,12 +102,13 @@ active-project @endif">{{ $project['status'] }}</span>
                                                 </p>
                                             </div>
                                         </div>
+
                                         <div class="d-flex">
                                             <a href="donate.html"
                                                 class="custom-btn btn @auth w-50 @else w-100 @endauth"><small>Donate
                                                 </small></a>
                                             @auth
-                                                <a href="donate.html" class="custom-btn btn w-50"><small>Volunteer</small></a>
+                                                <a href="volunteerInProject/{{ $project->id }}" class="custom-btn btn w-50"><small>Volunteer</small></a>
                                             @endauth
                                         </div>
                                     </div>

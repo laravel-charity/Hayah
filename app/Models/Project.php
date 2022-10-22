@@ -20,7 +20,7 @@ class Project extends Model
 
     public function volunteers()
     {
-        return $this->belongsToMany(Volunteer::class);
+        return $this->belongsToMany(Volunteer::class)->withPivot('status');
     }
 
     public function category()

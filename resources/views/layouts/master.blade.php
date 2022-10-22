@@ -112,6 +112,7 @@
                     <h5 class="site-footer-title mb-3">Quick Links</h5>
 
 
+
                     <ul class="footer-menu">
 
 
@@ -121,9 +122,11 @@
                         <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
 
                         @if (auth()->user())
+
                             <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
                                     volunteer</a></li>
                         @endif
+
 
                     </ul>
                 </div>
