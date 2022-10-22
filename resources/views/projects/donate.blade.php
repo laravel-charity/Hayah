@@ -100,7 +100,8 @@
 
                             <div class="col-lg-6 col-12 mt-2">
                                 <input type="text" name="name" id="donation-name" class="form-control"
-                                    placeholder="Your name" required>
+                                    @if(Auth::check()) value="{{auth()->user()->name}}" @endif placeholder="Your name"
+                                    required>
                             </div>
                             @error('name')
                             <span class="text-danger">{{$message}}</span>
@@ -108,13 +109,16 @@
 
                             <div class="col-lg-6 col-12 mt-2">
                                 <input type="email" name="email" id="donation-email" pattern="[^ @]*@[^ @]*"
-                                    class="form-control" placeholder="Your email" required>
+                                    class="form-control" @if(Auth::check()) value="{{auth()->user()->email}}" @endif
+                                    placeholder="Your email" required>
                             </div>
                             @error('email')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
 
                             <input type="hidden" name="project_id" value="{{$event->id}}">
+                            <input type="hidden" name="user_id" @if(Auth::check()) value="{{auth()->user()->id}}"
+                                @endif>
 
                             <div class="col-lg-12 col-12">
                                 <h5 class="mt-4 pt-1">Choose Payment</h5>

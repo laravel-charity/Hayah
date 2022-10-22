@@ -54,18 +54,20 @@ class ProjectController extends Controller
         $donation->name = $request->name;
         $donation->email = $request->email;
         $donation->project_id = $request->project_id;
-        $donation->amount = $_POST['amount_text'];
-        if (isset($_POST['amount_text'])) {
-        } elseif (isset($_POST['amount'])) {
-            $donation->amount = $_POST['amount'];
+        $donation->user_id = $request->user_id;
+
+        if ($request->amount_text == null) {
+            $donation->amount = $request->amount;
+        } else {
+            $donation->amount = $request->amount_text;
         }
         $donation->save();
 
 
         return redirect()->intended('/')->with('message', 'Thank you for your donation');
     }
-      
-//       ----------------------------------------------------
+
+    //       ----------------------------------------------------
     // Show All Projects and Filter Based on Search and Status
     public function showAll()
     {
