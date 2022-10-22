@@ -42,6 +42,7 @@ class VolunteerController extends Controller
             ]);
 
         return back();
+
     }
 
     public function chooseProjectToVolunteer($id)

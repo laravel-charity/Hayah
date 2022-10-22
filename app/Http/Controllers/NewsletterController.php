@@ -20,11 +20,11 @@ class NewsletterController extends Controller
         public function store(Request $request)
     {
 
-      Auth::user()->id;
+      
 
     $validate=$request->validate(
         [   
-            'email' => 'required'
+            'email' => 'required|unique:newsletters'
         ]   
     );
 

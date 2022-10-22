@@ -11,17 +11,17 @@
                 <div class="contact-info-wrap">
                     <h2>Get in touch</h2>
 
-                    @if (auth()->user())
+                  
                     <div class="contact-image-wrap d-flex flex-wrap">
-                        <img src="images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg"
+                        <img src="images/1.png.png"
                             class="img-fluid avatar-image" alt="">
 
                         <div class="d-flex flex-column justify-content-center ms-3">
-                            <p class="mb-0">{{auth()->user()->name}}</p>
-                            <p class="mb-0"><strong>{{auth()->user()->email}}</strong></p>
+                            <p class="mb-0">Osama Dasooky</p>
+                            <p class="mb-0">osamadasooky6@gmail.com<strong></strong></p>
                         </div>
                     </div>
-                    @endif
+               
                   
 
                     <div class="contact-info">
