@@ -29,7 +29,7 @@ class VolunteerController extends Controller
         ]
             
     );
-
+   
     $userid=Auth::user()->id;    
     $newvolunteer = Volunteer::create(
         [

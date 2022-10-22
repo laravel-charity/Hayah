@@ -9,120 +9,23 @@ https://templatemo.com/tm-581-kind-heart-charity
 /*---------------------------------------
   about                
 -----------------------------------------*/
-.img_about
-{
-    width:100%;
-    /* background-color:red; */
-    height:80vh;
-    background-image: url('images/1.png');
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.div_about
-{
-    width: 300px;
-    height: 200px;
-    background-color:rgba(0, 0, 0, 0.195);
-    border-radius: 20px;
-     
-}
-.div_about
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-}
-.div_about > h3 
-{
-    /* color: white; */
-}
-
+.
 
 
 /*---------------------------------------
   contact                
 -----------------------------------------*/
-.img_contact
-{
-    width:100%;
-    /* background-color:red; */
-    height:50vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.div_contact
-{
-    width: 300px;
-    height: 200px;
-    background-color:rgba(0, 0, 0, 0.195);
-    border-radius: 20px;
-     
-}
-.div_contact
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-}
-.div_contact > h3 
-{
-    /* color: white; */
-    /* font-weight: bold; */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.col-md-3{
-
-  display: inline-block;
-  margin-left:-4px;
- 
-
-}
+/* // */
  .col-md-3 img{
   width:100%;
   height:auto;
 }
-
- body .carousel-control-prev-icon,
-body .carousel-control-next-icon{
-  background-color:#5bc1ac;
-}
-body .no-padding{
-  padding-left: 0;
-  padding-right: 0;
-}
-
 div.card {
-  width: 280px;
+  width: 270px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px #1b1b1b33;
-  margin: 15px;
+  margin: 25px;
   transition: all 0.3s;
 }
 

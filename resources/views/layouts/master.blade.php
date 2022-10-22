@@ -93,7 +93,7 @@
                         </li>
                     @else
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="/login">Login</a>
+                            <a class="nav-link custom-btn custom-border-btn btn" href="login">Login</a>
                         </li>
 
                     @endauth
@@ -122,7 +122,11 @@
 
 
                         <li class="footer-menu-item"><a href="/" class="footer-menu-link">Home</a></li>
+
+                         @if (!auth()->user())           
                         <li class="footer-menu-item"><a href="login" class="footer-menu-link">Login</a></li>
+                          @endif
+                          
                         <li class="footer-menu-item"><a href="projects" class="footer-menu-link">Projects</a></li>
                         <li class="footer-menu-item"><a href="contact" class="footer-menu-link">Contact</a></li>
                      
