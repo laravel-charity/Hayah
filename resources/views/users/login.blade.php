@@ -3,10 +3,16 @@
 @section('title', 'Log in')
 
 @section('content')
-<div class="container">
-    <form class="custom-form volunteer-form my-5 mb-lg-0  pb-0" action="users/authenticate" method="post" role="form">
-        @csrf
-        <h3 class="mb-5 text-center">Log In to Your Account</h3>
+
+@if(session()->has('email'))
+    <div class="alert alert-danger text-center">
+        {{ session()->get('email') }}
+    </div>
+@endif
+    <div class="container">
+        <form class="custom-form volunteer-form my-5 mb-lg-0  pb-0" action="users/authenticate" method="post" role="form">
+            @csrf
+            <h3 class="mb-5 text-center">Log In to Your Account</h3>
 
         <div class="row w-50 mx-auto mb-3 pt-2">
 

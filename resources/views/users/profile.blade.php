@@ -10,6 +10,7 @@
         </div>
     @endif
 
+
 {{-- calculate donatios amount and count --}}
 <?php
 $donationCount= $userData->donations->count();
@@ -45,8 +46,17 @@ $donationAmount=$userData->donations->sum('amount');
                 <h3 class="custom-text-block d-flex justify-content-end"> <a href="/editProfile"><i
                             class="bi bi-gear-fill "></i></a></h3>
 
-            </div>
 
+            </div>
+<div class="col-lg-3 col-md-3 col-12 d-none d-md-block  ">
+                <h3 class="custom-text-block d-flex justify-content-end"> <a href="/editProfile"><i
+                            class="bi bi-gear-fill "></i></a></h3>
+
+
+            </div>
+           
+            </div>
+<hr class="mt-5">
 
             {{-- Projects user volunteered in --}}
             <div class="container row  about-section section-padding text-center">
@@ -64,65 +74,59 @@ $donationAmount=$userData->donations->sum('amount');
                             </thead>
                             <tbody>
 
-                                @foreach ($volunteerProject[0]->projects as $keyP => $project)
-                                    <tr>
-                                        <td class="text-muted">{{ $project->name }}</td>
-                                        <td class="text-muted">{{ $project->starting_date }}</td>
-                                        <td class="text-muted">{{ $project->category->name }}</td>
-                                        <td class="text-muted">
-                                            {{-- @foreach ($volunteerProject as $keyV => $volunteer)
-                                    @if ($keyV == $keyP)
-                                    {{ $volunteer->status }}
-                                    @endif
-                                    @endforeach --}}
-                                            {{ $project->pivot->status }}
-                                        </td>
-                                        <td class="text-muted">{{ $project->status }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+                            @foreach ($volunteerProject[0]->projects as $keyP => $project)
+                            <tr>
+                                <td class="text-muted">{{ $project->name }}</td>
+                                <td class="text-muted">{{ $project->starting_date}}</td>
+                                <td class="text-muted">{{ $project->category->name}}</td>
+                                <td class="text-muted">{{ $project->pivot->status}}</td>
+                                <td class="text-muted">{{ $project->status}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 @else
-                    <span class="text-muted m-3 d-inline "style="font-size:20px">
-                        You didn't volunteer in any project
-                        </s><br>
-                        <span><a href="" class="custom-btn btn smoothscroll mt-3"> Become a Volunteer </a></span>
-                @endif
+                <span class="text-muted m-3 d-inline "style="font-size:20px">
+                    You didn't volunteer in any project
+                </s><br>
+                <span><a href="/volunteer" class="custom-btn btn smoothscroll mt-3"> Become a Volunteer </a></span>
+            @endif
+        </div>
+        <hr>
+        {{-- Projects user donated in --}}
+        <div class="container row  about-section section-padding text-center">
+            <h2 class="custom-text "style="font-size:35px">Projects you donated in </h2>
+            {{-- check if the user has donations or not --}}
+            @if ($userData->donations->count() != 0)
+                <div class="text-center ">
+                <table class="table  mt-4 mx-auto" style="width:85%;">
+                    <thead class="table-light">
+                    <th >Project name</th>
+                    <th >Donation Aumount </th>
+                    <th > Donation date</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($userData->donations as  $donations)
+                        <tr>
+                            <td class="text-muted">
+                                {{ $donations->project->name}}
+                            </td>
+                            <td class="text-muted">{{ $donations->amount}}</td>
+                            <td class="text-muted">{{ $donations->created_at }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            <hr>
-            {{-- Projects user donated in --}}
-            <div class="container row  about-section section-padding text-center">
-                <h2 class="custom-text "style="font-size:35px">Projects you donated in </h2>
-                {{-- check if the user has donations or not --}}
-                @if ($userData->donations->count() != 0)
-                    <div class="text-center ">
-                        <table class="table  mt-4 mx-auto" style="width:85%;">
-                            <thead class="table-light">
-                                <th>Project name</th>
-                                <th>Donation Aumount </th>
-                                <th>Donation date</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($userData->donations as $donations)
-                                    <tr>
-                                        <td class="text-muted">
-                                            {{ $donations->project->name }}
-                                        </td>
-                                        <td class="text-muted">{{ $donations->amount }}</td>
-                                        <td class="text-muted">{{ $donations->created_at }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <span class="text-muted m-3 d-inline "style="font-size:20px">
-                        You didn't donate in any project
-                    </span><br>
-                    <span><a href="" class="custom-btn btn smoothscroll "> Make a Donation </a></span>
-                @endif
-            </div>
+            @else
+            <span class="text-muted m-3 d-inline "style="font-size:20px">
+                You didn't donate in any project
+            </span><br>
+            <span><a href="/donationto" class="custom-btn btn smoothscroll "> Make a Donation  </a></span>
+            @endif
+        </div>
 
 
         </div>

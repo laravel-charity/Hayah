@@ -46,8 +46,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+
                         <a class="nav-link {{ request()->is('/') || request()->is('home') ? 'active' : '' }}"
                             href="/home">Home</a>
+
                     </li>
 
                     <li class="nav-item">
@@ -55,7 +57,8 @@
                             href="/projects">Projects</a>
                     </li>
 
-                    <li class="nav-item">
+                    @if (auth()->user())
+                           <li class="nav-item">
                         <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
                             href="/volunteer">Volunteer</a>
                     </li>
@@ -66,7 +69,10 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="/contact">Contact</a>
+
                     </li>
+
+                    
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     @auth
@@ -77,10 +83,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
+
                                     src="{{ asset('storage/' . auth()->user()->image) }}" class="img-fluid avatar-image"
                                     alt=""></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+
 
                                 <li><a class="dropdown-item" href="/profile">View Profile</a></li>
                                 <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
@@ -97,11 +105,12 @@
                                         </button>
                                     </form>
                                 </li>
+
                             </ul>
                         </li>
                         @else
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="/login">Login</a>
+                            <a class="nav-link custom-btn custom-border-btn btn" href="login">Login</a>
                         </li>
 
 
@@ -139,9 +148,12 @@
 
 
                         @if (auth()->user())
+
+
                             <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
                                     volunteer</a></li>
                         @endif
+
 
                     </ul>
                 </div>
@@ -156,9 +168,11 @@
 
                         <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
                             class="form-control" placeholder="Email Address" required>
-                        @error('email')
-                            <div class="alert alert-danger" style="width:60%">{{ $message }}</div>
-                        @enderror
+
+                            @error('email')
+                            <div class="alert alert-danger" style="width:90%">{{ $message }}</div>
+                          @enderror
+
                         <div class="col-lg-12 col-12">
                             <button type="submit" class="form-control">Subscribe</button>
                         </div>
