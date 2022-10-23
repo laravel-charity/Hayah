@@ -158,17 +158,19 @@
 
 
                 <div class="col-lg-4 col-md-6 col-12 mx-auto" style="padding-bottom:10px;">
-                    <form class="custom-form subscribe-form" action="newsletterform" method="post"
+                    <form class="custom-form subscribe-form" action="/newsletterform" method="post"
                         style="width: 400px; ">
                         @csrf
                         <h5 class="mb-4">Newsletter Form</h5>
 
                         <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
-                            class="form-control" placeholder="Email Address" required>
-
+                            class="form-control"
+                            @if (Auth::check()) value="{{ auth()->user()->email }}" @endif
+                            placeholder="Email Address" required>
                         @error('email')
-                            <div class="alert alert-danger" style="width:90%">{{ $message }}</div>
+                            <p class="text-danger small" style="margin-top: -1.5rem">{{ $message }}</p>
                         @enderror
+
 
                         <div class="col-lg-12 col-12">
                             <button type="submit" class="form-control">Subscribe</button>

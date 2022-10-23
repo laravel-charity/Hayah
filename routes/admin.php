@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\DonationController;
 use App\Http\Controllers\admin\StatisticController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\NewsletterController;
+use App\Http\Controllers\admin\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,19 @@ Route::get("/newsleeters", [NewsletterController::class, "index"]);
 Route::get("/donations", [DonationController::class, "index"]);
 
 
+
 //----------------------statistics------------------------
 
 Route::get("/dashboard", [StatisticController::class, "statistics"])->can("admin");
+
+
+// ------------------- Routes for Emails -------------------
+
+Route::get("/admin/sendEmail/{id}", [EmailController::class, 'sendMail']);
+
+Route::post("/admin/sendEmail", [EmailController::class, 'send']);
+
+Route::get("/admin/sendNewsletterForm", [EmailController::class, 'sendNewsletterForm']);
+
+Route::post("/admin/sendNewsletter", [EmailController::class, 'sendNewsletter']);
+
