@@ -30,7 +30,7 @@ class ProjectController extends Controller
 
         $accomplished = Project::orderBy('id', 'desc')->where('status', 'accomplished')->take(3)->get();
 
-        $volunteerId = Category::where('name', 'volunteer')->get();
+        $volunteerId = Project::where('requirements', 'volunteers')->orWhere('requirements', 'both')->get();
 
 
         return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished, 'volunteerId' => $volunteerId[0]->id]);
