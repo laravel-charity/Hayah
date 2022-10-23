@@ -35,7 +35,7 @@ class EmailController extends Controller
         $contact = Contact::find($request->id);
         $contact-> replied = 1;
         $contact-> save();
-        return redirect('/contact/messages');
+        return redirect('/admin/messages');
     }
 
     // View Email Form 
@@ -61,7 +61,7 @@ class EmailController extends Controller
             foreach($subscribers as $subscriber){
                 Mail::to($subscriber)->send(new NewsletterMail($emailcontent));
             }
-            
+
             return redirect('/newsleeters');
       
 

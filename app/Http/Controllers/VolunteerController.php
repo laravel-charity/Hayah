@@ -47,24 +47,27 @@ class VolunteerController extends Controller
     public function chooseProjectToVolunteer($id)
     {
         $user = Auth::user();
-        if ($user->volunteer) {
-
-            $checkIfVolunteered = DB::table('project_volunteer')
-                ->where('project_id', '=', $id)
-                ->where('volunteer_id', '=', $user->volunteer->id)->get();
-            if ($checkIfVolunteered->count() == 0) {
-                DB::table('project_volunteer')->insert([
-                    'project_id' => $id,
-                    'volunteer_id'   => $user->volunteer->id
-                ]);
-                return redirect('profile')->with('message', 'thank you for your time');
-            } else {
-                return back()->with('message', 'you already volunteered in this project');
-            }
-        } else if ($user) {
-            return view("projects.volunteer");
-        } else {
+        if(Auth::user()){
+            if ($user->volunteer) {
+    
+                $checkIfVolunteered = DB::table('project_volunteer')
+                    ->where('project_id', '=', $id)
+                    ->where('volunteer_id', '=', $user->volunteer->id)->get();
+                if ($checkIfVolunteered->count() == 0) {
+                    DB::table('project_volunteer')->insert([
+                        'project_id' => $id,
+                        'volunteer_id'   => $user->volunteer->id
+                    ]);
+                    return redirect('profile')->with('message', 'thank you for your time');
+                } else {
+                    return back()->with('message', 'you already volunteered in this project');
+                }
+            } else if ($user) {
+                return view("projects.volunteer");
+            } 
+        }else {
             return redirect('register')->with('message', 'please join us to become a Volunteer');
         }
+
     }
 }
