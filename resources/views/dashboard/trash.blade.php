@@ -22,12 +22,12 @@
                         @php
                             $i = 0;
                         @endphp
-                        @foreach ($categories as $category)
+                        @foreach ($users as $user)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td>{{ $user->name }}</td>
                             <td>
-                                <a href="/restore/category/{{ $category->id }}" class="btn  btn-primary d-inline">Restore</a>
+                                <a href="/restore/user/{{ $user->id }}" class="btn  btn-primary d-inline">Restore</a>
                                 {{-- <form action="/force-delete/{{ $category->id }}" method="post" class="d-inline">
                                     @csrf
                                     @method("DELETE")

@@ -5,7 +5,7 @@
     
 <div class="card">
     <div class="card-header">
-        <h5>@yield('page',"Add user")</h5>
+        <h5>@yield('page',"Edit user")</h5>
     </div>
     <div class="card-body">
                 <form action="/admin/categories/{{ $category->id }}" method="post" style="margin-left: 33%">

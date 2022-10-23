@@ -42,7 +42,9 @@ class User extends Authenticatable
         }
 
         if ($filters["search"] ?? false) {
-            $query->where("name", "LIKE", "%" . $filters["search"] . "%")->first();
+            $query->where("name", "LIKE", "%" . $filters["search"] . "%")
+                ->orWhere("email", "LIKE", "%" . $filters["search"] . "%")
+                ->get();
         }
     }
 

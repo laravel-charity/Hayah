@@ -38,14 +38,30 @@
                             </td>
                             <td>{{ $volunteer->phone }}</td>
                             <td>{{ $volunteer->city }}</td>
-                            <td>{{ $volunteer->status }}</td>
+                            <td>{{ $volunteer->pivot->status }}</td>
                             <td>{{ $volunteer->description }}</td>
-                            @if ($volunteer->status !== 'approved')
                             <td>
-                                <a href="/status/volunteer/{{ $volunteer->id }}" class="btn  btn-primary d-inline">Approve</a>
+                                
+                                @if ($volunteer->pivot->status == 'approved')
+                                <form action="/status/volunteer" method="post" class="d-inline">
+                                 @csrf
+                                <input type="hidden" name="volunteer_id" value="{{ $volunteer->id }}">
+                                <input type="hidden" name="project_id" value="{{ $project->id }}">
+                                <input type="hidden" name="status" value="rejected">
+                                <button type="submit" class="btn  btn-danger d-inline">Reject</button>
+                                </form>
+                                @else
+                                <form action="/status/volunteer" method="post" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="volunteer_id" value="{{ $volunteer->id }}">
+                                <input type="hidden" name="project_id" value="{{ $project->id }}">
+                                <input type="hidden" name="status" value="approved">
+                                <button type="submit" class="btn  btn-primary d-inline">Approve</button>
+                                </form>
+                                @endif
                                 
                             </td>
-                            @endif
+                           
                         </tr>
                         @endforeach
                     </tbody>

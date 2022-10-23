@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Project;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
@@ -39,7 +40,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->image);
+        dd($request->file("image"));
         $request->validate([
             "name" => "required",
             "description" => "required",
@@ -48,19 +49,21 @@ class ProjectController extends Controller
             "starting_date" => "required",
             "status" => "required",
             "category_id" => "required",
+            "requirements" => "required",
         ]);
 
         // $imageName = time() . "." . $request->image->extension();
         // $request->image->move(public_path('images'), $imageName);
-        // $image = base64_encode(file_get_contents($request->file('image')));
+        $image = base64_encode(file_get_contents($request->file('image')));
         $project = new Project();
         $project->name = $request->name;
         $project->description = $request->description;
-        $project->image = "jafer.png";
+        $project->image = $image;
         $project->target_donations = $request->target_donations;
         $project->starting_date = $request->starting_date;
         $project->status = $request->status;
         $project->category_id = $request->category_id;
+        $project->requirements = $request->requirements;
         $project->save();
         return redirect('/admin/projects');
     }
@@ -97,14 +100,15 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             "name" => "required",
             "description" => "required",
             "image" => "required|image|mimes:png,jpg|max:2048",
             "target_donations" => "required",
             "starting_date" => "required",
-            "status" => "required"
+            "status" => "required",
+            "category_id" => "required",
+            "requirements" => "required",
         ]);
 
         $image = base64_encode(file_get_contents($request->file('image')));
@@ -115,6 +119,8 @@ class ProjectController extends Controller
         $project->target_donations = $request->target_donations;
         $project->starting_date = $request->starting_date;
         $project->status = $request->status;
+        $project->category_id = $request->category_id;
+        $project->requirements = $request->requirements;
         $project->save();
         return redirect('/admin/projects');
     }
@@ -150,7 +156,13 @@ class ProjectController extends Controller
     public function project_volunteers($id)
     {
         $project = Project::find($id);
-        // dd($project->volunteers);
-        return view('dashboard.projects.volunteers', ["project" => $project]);
+        // $pending_voluntteers = DB::table('project_volunteer')
+        //     ->where("status", "pending")
+        //     ->where("project_id", $project->id)
+        //     ->get();
+        return view('dashboard.projects.volunteers', [
+            "project" => $project
+            // "pending_voluntteers" => $pending_voluntteers
+        ]);
     }
 }

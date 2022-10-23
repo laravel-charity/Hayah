@@ -24,6 +24,7 @@ use App\Http\Controllers\admin\EmailController;
 */
 
 
+
 // Admin users
 Route::resource("/admin/users", AdminController::class);
 
@@ -63,11 +64,11 @@ Route::get("/project/volunteers/{porject}", [ProjectController::class, "project_
 
 Route::get("/volunteers", [VolunteerController::class, "index"]);
 Route::get("/volunteer/projects/{porject}", [VolunteerController::class, "volunteer_projects"]);
-Route::get("/status/volunteer/{volunteer}", [VolunteerController::class, "volunteer_status"]);
+Route::post("/status/volunteer", [VolunteerController::class, "volunteer_status"]);
 
 
 // Contact information
-Route::get("/contact/messages", [ContactController::class, "index"]);
+Route::get("/admin/messages", [ContactController::class, "index"]);
 
 // Newsleeter
 Route::get("/newsleeters", [NewsletterController::class, "index"]);

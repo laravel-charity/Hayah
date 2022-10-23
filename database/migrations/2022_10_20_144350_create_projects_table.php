@@ -21,6 +21,7 @@ return new class extends Migration
             $table->binary('image');
             $table->double('target_donations', 2);
             $table->date('starting_date');
+            $table->enum('requirements', ["donations", "volunteers", "both"])->default("both");
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

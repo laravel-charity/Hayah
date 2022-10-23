@@ -27,9 +27,9 @@
                         <tr>
                             <th>#</th>
                             <th>Amount</th>
+                            <th>Project</th>
                             <th>Name</th>
                             <th>ُEmail</th>
-                            <th>Project</th>
                             {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
@@ -41,9 +41,9 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $donation->amount }}</td>
+                            <td>{{ $donation->project->name }}</td>
                             <td>{{ $donation->name }}</td>
                             <td>{{ $donation->email }}</td>
-                            <td>{{ $donation->project->name }}</td>
                             {{-- <td>
                                 <form action="/admin/categories/{{ $donation->id }}" method="post" class="d-inline">
                                     @csrf
