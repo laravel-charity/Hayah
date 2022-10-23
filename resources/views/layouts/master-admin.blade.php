@@ -20,8 +20,7 @@
     <link rel="icon" href="images/logo.png" type="image/x-icon">
 
     <!-- vendor css -->
-    <link rel="stylesheet" href="admin/css/style.css">
-
+    <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
 
 
 </head>
@@ -41,7 +40,7 @@
 
                 <div class="">
                     <div class="main-menu-header">
-                        <img class="img-radius" src="admin/images/user/avatar-2.jpg" alt="User-Profile-Image">
+                        <img class="img-radius" src="{{ asset('admin/images/user/avatar-2.jpg') }}" alt="User-Profile-Image">
                         <div class="user-details">
                             <span>John Doe</span>
                             <div id="more-details">UX Designer<i class="fa fa-chevron-down m-l-5"></i></div>
@@ -60,47 +59,76 @@
                 </div>
 
                 <ul class="nav pcoded-inner-navbar ">
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Navigation</label>
-                    </li>
+                   
                     <li class="nav-item">
                         <a href="index.html" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-layout"></i></span><span class="pcoded-mtext">Page
-                                layouts</span></a>
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-layout"></i></span><span class="pcoded-mtext">Users</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-                            <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
+                            <li><a href="/admin/users">All users</a></li>
+                            <li><a href="/admin/users/create">Add user</a></li>
+                            <li><a href="/trash">Archive users</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>UI Element</label>
-                    </li>
+                    
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Basic</span></a>
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Categories</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a href="bc_alert.html">Alert</a></li>
-                            <li><a href="bc_button.html">Button</a></li>
-                            <li><a href="bc_badges.html">Badges</a></li>
-                            <li><a href="bc_breadcrumb-pagination.html">Breadcrumb & paggination</a></li>
-                            <li><a href="bc_card.html">Cards</a></li>
-                            <li><a href="bc_collapse.html">Collapse</a></li>
-                            <li><a href="bc_carousel.html">Carousel</a></li>
-                            <li><a href="bc_grid.html">Grid system</a></li>
-                            <li><a href="bc_progress.html">Progress</a></li>
-                            <li><a href="bc_modal.html">Modal</a></li>
-                            <li><a href="bc_spinner.html">Spinner</a></li>
-                            <li><a href="bc_tabs.html">Tabs & pills</a></li>
-                            <li><a href="bc_typography.html">Typography</a></li>
-                            <li><a href="bc_tooltip-popover.html">Tooltip & popovers</a></li>
-                            <li><a href="bc_toasts.html">Toasts</a></li>
-                            <li><a href="bc_extra.html">Other</a></li>
+                            <li><a href="/admin/categories">All categories</a></li>
+                            <li><a href="/admin/categories/create">Add category</a></li>
+                            <li><a href="{{url('/trash/category')}}">Archive categories</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Projects</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="/admin/projects">All projects</a></li>
+                            <li><a href="/admin/projects/create">Add project</a></li>
+                            <li><a href="{{url('/trash/project')}}">Archive projects</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Volunteers</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="/volunteers">All volunteers</a></li>
+                            {{-- <li><a href="/admin/projects/create">Add project</a></li>
+                            <li><a href="{{url('/trash/project')}}">Archive projects</a></li> --}}
+                        </ul>
+                    </li>
+
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Contact</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="/contact/messages">All messages</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Newsletters</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="/newsleeters">All subscribers</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Donations</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="/donations">All Donations</a></li>
+                        </ul>
+                    </li>
+
+
                     <li class="nav-item pcoded-menu-caption">
                         <label>Forms &amp; table</label>
                     </li>

@@ -15,8 +15,13 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin');
 });
+
+
+
+
+
 
 // ---------------------Routes for Registration-----------------------------
 // Show Register Form
