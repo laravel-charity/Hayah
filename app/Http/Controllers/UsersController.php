@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Password;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Auth\Events\PasswordReset;
 
 class UsersController extends Controller
 {
@@ -99,6 +102,7 @@ class UsersController extends Controller
         return back()->with('email', 'Wrong Email or Password');
     }
 
+    // Redirect to Sign in With Google Page
     public function redirectToGoogle()
 
     {
@@ -106,6 +110,8 @@ class UsersController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+
+    // Handle actual Sign up / login functionality with Google
     public function handleGoogleCallback()
 
     {
@@ -145,5 +151,64 @@ class UsersController extends Controller
             // return redirect()->back();
             return redirect()->intended('/');
         }
+    }
+
+    // Show Forgot Password Request Form
+    public function resetPasswordRequest()
+    {
+        return view('users.forgot-password');
+    }
+
+    // Handle validating the email address and sending the password reset request to the corresponding use
+    public function validateResetPassword(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
+    }
+
+    // Show Reset Password Form
+    public function resetPassword($token)
+    {
+        return view('users.reset-password', ['token' => $token]);
+    }
+
+    // Handle password reset
+    public function handleResetPassword(Request $request)
+    {
+        $request->validate(
+            [
+                'token' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/|confirmed',
+            ],
+            [
+                'password.regex' => 'The password should have minimum eight characters,
+        at least one letter, one number and one special character'
+            ]
+        );
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('status', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
 }

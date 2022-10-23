@@ -7,8 +7,10 @@ use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DonationController;
+use App\Http\Controllers\admin\StatisticController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\NewsletterController;
+use App\Http\Controllers\admin\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +23,6 @@ use App\Http\Controllers\admin\NewsletterController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view("admin");
-})->can("admin");
-// Route::get('/dashboard', function () {
-//     return view("admin");
-// });
 
 
 // Admin users
@@ -74,9 +70,27 @@ Route::post("/status/volunteer", [VolunteerController::class, "volunteer_status"
 // Contact information
 Route::get("/admin/messages", [ContactController::class, "index"]);
 
-// Newsleeter 
+// Newsleeter
 Route::get("/newsleeters", [NewsletterController::class, "index"]);
 
 
 // Donations
 Route::get("/donations", [DonationController::class, "index"]);
+
+
+
+//----------------------statistics------------------------
+
+Route::get("/dashboard", [StatisticController::class, "statistics"])->can("admin");
+
+
+// ------------------- Routes for Emails -------------------
+
+Route::get("/admin/sendEmail/{id}", [EmailController::class, 'sendMail']);
+
+Route::post("/admin/sendEmail", [EmailController::class, 'send']);
+
+Route::get("/admin/sendNewsletterForm", [EmailController::class, 'sendNewsletterForm']);
+
+Route::post("/admin/sendNewsletter", [EmailController::class, 'sendNewsletter']);
+

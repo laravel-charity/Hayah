@@ -1,7 +1,17 @@
 @extends('layouts.master')
 
-
+@section('title', 'Contact us')
 @section('content')
+    @if (session()->has('message'))
+        <div class="alert alert-success text-center">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+    @if (session()->has('error_message'))
+        <div class="alert alert-danger text-center">
+            {{ session()->get('error_message') }}
+        </div>
+    @endif
     <section class="contact-section section-padding" id="section_6">
         <div class="container">
             <div class="row">
@@ -54,7 +64,7 @@
                 </div>
 
                 <div class="col-lg-5 col-12 mx-auto">
-                    <form class="custom-form contact-form" action="contactForm" method="post">
+                    <form class="custom-form contact-form" action="/contactForm" method="post">
                         @csrf
                         <h2>Contact form</h2>
 
@@ -68,16 +78,25 @@
                         </div> --}}
 
                             <div>
-                                <input type="text" name="name" id="last-name" class="form-control" placeholder="Name"
-                                    required>
+                                <input type="text"
+                                    @if (Auth::check()) value="{{ auth()->user()->name }}" @endif
+                                    name="name" id="last-name" class="form-control" placeholder="Name" required>
+                                @error('name')
+                                    <p class="text-danger small" style="margin-top: -1.5rem">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
-                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
-                            placeholder="Email" required>
-
-                        <textarea name="message" rows="5" class="form-control" id="message" placeholder="What can we help you?"></textarea>
-
+                        <input type="email" @if (Auth::check()) value="{{ auth()->user()->email }}" @endif
+                            name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email"
+                            required>
+                        @error('email')
+                            <p class="text-danger small" style="margin-top: -1.5rem">{{ $message }}</p>
+                        @enderror
+                        <textarea name="message" rows="5" class="form-control" id="message" placeholder="How can we help you?"></textarea>
+                        @error('message')
+                            <p class="text-danger small" style="margin-top: -1.5rem">{{ $message }}</p>
+                        @enderror
                         <button type="submit" class="form-control">Send Message</button>
                     </form>
                 </div>
