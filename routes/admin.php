@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DonationController;
+use App\Http\Controllers\admin\StatisticController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\NewsletterController;
 
@@ -20,10 +21,6 @@ use App\Http\Controllers\admin\NewsletterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/dashboard', function () {
-    return view("admin");
-})->can("admin");
 
 
 // Admin users
@@ -71,9 +68,14 @@ Route::get("/status/volunteer/{volunteer}", [VolunteerController::class, "volunt
 // Contact information
 Route::get("/contact/messages", [ContactController::class, "index"]);
 
-// Newsleeter 
+// Newsleeter
 Route::get("/newsleeters", [NewsletterController::class, "index"]);
 
 
 // Donations
 Route::get("/donations", [DonationController::class, "index"]);
+
+
+//----------------------statistics------------------------
+
+Route::get("/dashboard", [StatisticController::class, "statistics"])->can("admin");
