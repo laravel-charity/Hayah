@@ -111,6 +111,7 @@
                         </div>
 
 
+
                         {{-- if only volunteers needed --}}
                         @elseif($project['requirements']=='volunteers')
 
@@ -122,6 +123,7 @@
                         <a href="/donate/{{ $project->id }}" class="custom-btn btn  w-100 "><small>Donate
                             </small></a>
                         @endif
+
 
                     </div>
                 </div>

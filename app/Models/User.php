@@ -6,13 +6,17 @@ namespace App\Models;
 use App\Models\Donation;
 use App\Models\Volunteer;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+// use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
 
     public function volunteer()
@@ -26,6 +30,26 @@ class User extends Authenticatable
     }
 
 
+
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters["role"] ?? false) {
+            if ($filters["role"] == "all") {
+                $query->get("*");
+            } else {
+                $query->where("role", "=", $filters);
+            }
+        }
+
+        if ($filters["search"] ?? false) {
+            $query->where("name", "LIKE", "%" . $filters["search"] . "%")
+                ->orWhere("email", "LIKE", "%" . $filters["search"] . "%")
+                ->get();
+        }
+    }
+
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -34,6 +58,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
     ];
 
