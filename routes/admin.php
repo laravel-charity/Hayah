@@ -21,9 +21,9 @@ use App\Http\Controllers\admin\NewsletterController;
 |
 */
 
-Route::get('admin/dashborad', function () {
+Route::get('/dashboard', function () {
     return view("admin");
-});
+})->can("admin");
 
 
 // Admin users

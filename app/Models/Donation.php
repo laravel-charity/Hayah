@@ -23,4 +23,5 @@ class Donation extends Model
             $query->where("project_id", "=", $project->id);
         }
     }
+    protected $fillable = ['amount', 'project_id', 'name', 'email'];
 }

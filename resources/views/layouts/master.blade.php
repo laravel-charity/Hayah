@@ -11,29 +11,27 @@
     <title>@yield('title')</title>
 
     <!-- CSS FILES -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="css/templatemo-kind-heart-charity.css" rel="stylesheet">
+    <link href="{{ asset('css/templatemo-kind-heart-charity.css') }}" rel="stylesheet">
 
-    <link rel="icon" href="images/logo.png" type="image/x-icon">
-    <!--
 
-TemplateMo 581 Kind Heart Charity
 
-https://templatemo.com/tm-581-kind-heart-charity
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 
--->
+
 
 </head>
 
 <body id="section_1">
 
+
     <nav class="navbar navbar-expand-lg bg-light shadow-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
                 <span>
                     Hayat
                     <small>Non-profit Organization</small>
@@ -48,150 +46,145 @@ https://templatemo.com/tm-581-kind-heart-charity
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#top">Home</a>
+
+                        <a class="nav-link {{ request()->is('/') || request()->is('home') ? 'active' : '' }}"
+                            href="/home">Home</a>
+
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_2">Projects</a>
+                        <a class="nav-link {{ request()->is('projects*') ? 'active' : '' }}"
+                            href="/projects">Projects</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_3">Volunteer</a>
+                        <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
+                            href="/volunteer">Volunteer</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_4">About</a>
+                        <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}" href="/about">About</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_6">Contact</a>
-                    </li>
+                        <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="/contact">Contact</a>
 
-                    <li class="nav-item ms-3">
-                        <a class="nav-link custom-btn custom-border-btn btn" href="">Login</a>
                     </li>
 
 
-                    {{-- if user logged in --}}
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link click-scroll dropdown-toggle" href="#section_5"
-                            id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">News</a>
+                </ul>
 
-                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                            <li><a class="dropdown-item" href="news.html">News Listing</a></li>
+                <ul class="navbar-nav ms-auto">
+                    @auth
 
-                            <li><a class="dropdown-item" href="news-detail.html">News Detail</a></li>
-                        </ul>
-                    </li> --}}
+                        {{-- if user logged in --}}
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
+                                    src="{{ asset('storage/' . auth()->user()->image) }}" class="img-fluid avatar-image"
+                                    alt=""></a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+
+                                <li><a class="dropdown-item" href="/profile">View Profile</a></li>
+                                <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
+                                @if (Auth::user()->google_id == null)
+                                    <li>
+                                        <a class="dropdown-item" style="font-size:17px;" href="/changepass">Change
+                                            password</a>
+                                    </li>
+                                @endif
+                                <li>
+                                    <form method="post" action="/logout">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item ms-3">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="login">Login</a>
+                        </li>
+
+
+                    @endauth
                 </ul>
             </div>
-        </div>
     </nav>
 
+
     @yield('content')
+
+
 
     <footer class="site-footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-4">
-                    <img src="images/logo.png" class="logo img-fluid" alt="">
+                    <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
                 </div>
 
                 <div class="col-lg-4 col-md-6 col-12 mb-4">
                     <h5 class="site-footer-title mb-3">Quick Links</h5>
 
+
+
                     <ul class="footer-menu">
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Newsroom</a></li>
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Causes</a></li>
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Become a
-                                volunteer</a></li>
+                        <li class="footer-menu-item"><a href="/" class="footer-menu-link">Home</a></li>
+                        <li class="footer-menu-item"><a href="/about" class="footer-menu-link">Our Story</a></li>
+                        <li class="footer-menu-item"><a href="/register" class="footer-menu-link">Join Us</a></li>
+                        <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
 
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a>
-                        </li>
+
+
+                        @if (auth()->user())
+                            <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
+                                    volunteer</a></li>
+                        @endif
+
+
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-12 mx-auto">
-                    <h5 class="site-footer-title mb-3">Contact Infomation</h5>
 
-                    <p class="text-white d-flex mb-2">
-                        <i class="bi-telephone me-2"></i>
 
-                        <a href="tel: 305-240-9671" class="site-footer-link">
-                            305-240-9671
-                        </a>
-                    </p>
+                <div class="col-lg-4 col-md-6 col-12 mx-auto" style="padding-bottom:10px;">
+                    <form class="custom-form subscribe-form" action="newsletterform" method="post"
+                        style="width: 400px; ">
+                        @csrf
+                        <h5 class="mb-4">Newsletter Form</h5>
 
-                    <p class="text-white d-flex">
-                        <i class="bi-envelope me-2"></i>
+                        <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
+                            class="form-control" placeholder="Email Address" required>
 
-                        <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                            donate@charity.org
-                        </a>
-                    </p>
+                        @error('email')
+                            <div class="alert alert-danger" style="width:90%">{{ $message }}</div>
+                        @enderror
 
-                    <p class="text-white d-flex mt-3">
-                        <i class="bi-geo-alt me-2"></i>
-                        Akershusstranda 20, 0150 Oslo, Norway
-                    </p>
-
-                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" class="form-control">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </div>
 
-        <div class="site-footer-bottom">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-lg-6 col-md-7 col-12">
-                        <p class="copyright-text mb-0">Copyright © 2036 <a href="#">Kind Heart</a> Charity Org.
-                            Design: <a href="https://templatemo.com" target="_blank">TemplateMo</a><br>Distribution:
-                            <a href="https://themewagon.com">ThemeWagon</a>
-                        </p>
-                    </div>
+                <!-- JAVASCRIPT FILES -->
+                <script src="{{ asset('js/jquery.min.js') }}"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+                <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+                {{-- <script src="{{ asset('js/click-scroll.js') }}"></script> --}}
+                <script src="{{ asset('js/counter.js') }}"></script>
+                <script src="{{ asset('js/custom.js') }}"></script>
 
-                    <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
-                        <ul class="social-icon">
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-twitter"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-facebook"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-instagram"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-linkedin"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="https://youtube.com/templatemo" class="social-icon-link bi-youtube"></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT FILES -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/click-scroll.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/custom.js"></script>
 
 </body>
 

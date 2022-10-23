@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->default('profilepic.jpeg');
+            $table->string('image')->default('logos/profilepic.jpg'); // it jpg not jpeg
             $table->string('role')->default('user');
             $table->softDeletes();
             $table->string('google_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -13,11 +13,23 @@ class Volunteer extends Model
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Project::class)->withPivot('status');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+
+
+    protected $fillable = [
+
+        'user_id',
+        'phone',
+        'city',
+        'description',
+
+
+    ];
 }
