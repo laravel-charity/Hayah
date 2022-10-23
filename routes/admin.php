@@ -21,8 +21,8 @@ use App\Http\Controllers\admin\NewsletterController;
 |
 */
 
-Route::get('admin/dash', function () {
-    return 'hello';
+Route::get('admin/dashborad', function () {
+    return view("admin");
 });
 
 
