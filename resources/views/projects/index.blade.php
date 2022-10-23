@@ -125,7 +125,7 @@
             </div>
 
         </section>
-        
+
 
 
 
@@ -197,11 +197,12 @@
                                             </div>
                                         </div>
                                         <div class="d-flex">
-                                            <a href="donate/{{ $event->id }}"
+                                            <a href="/donate/{{ $event->id }}"
                                                 class="custom-btn btn @auth w-50 @else w-100 @endauth">Donate
                                             </a>
                                             @auth
-                                                <a href="" class="custom-btn btn w-50">Volunteer</a>
+                                                <a href="/volunteerInProject/{{ $event->id }}"
+                                                    class="custom-btn btn w-50">Volunteer</a>
                                             @endauth
                                         </div>
                                         {{-- <a href="donate/{{ $event->id }}" class="custom-btn btn">Donate now</a> --}}

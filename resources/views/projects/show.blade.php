@@ -69,10 +69,11 @@
                         </div>
 
                         <div class="d-flex align-items-center mt-4">
-                            <a href="donate.html" class="custom-btn btn @auth w-50 @else w-100 @endauth">Donate
+                            <a href="/donate/{{ $project->id }}"
+                                class="custom-btn btn @auth w-50 @else w-100 @endauth">Donate
                                 now</a>
                             @auth
-                                <a href="donate.html" class="custom-btn btn w-50">Volunteer</a>
+                                <a href="/volunteerInProject/{{ $project->id }}" class="custom-btn btn w-50">Volunteer</a>
                             @endauth
                         </div>
                     </div>
