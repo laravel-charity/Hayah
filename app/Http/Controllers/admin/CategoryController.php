@@ -102,7 +102,7 @@ class CategoryController extends Controller
     public function trashed()
     {
         $categories = Category::onlyTrashed()->get();
-        return view("dashboard.trash", compact("categories"));
+        return view("dashboard.categories.trash", compact("categories"));
     }
 
     public function restore($id)

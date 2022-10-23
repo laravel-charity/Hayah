@@ -24,6 +24,9 @@ use App\Http\Controllers\admin\NewsletterController;
 Route::get('/dashboard', function () {
     return view("admin");
 })->can("admin");
+// Route::get('/dashboard', function () {
+//     return view("admin");
+// });
 
 
 // Admin users
@@ -65,11 +68,11 @@ Route::get("/project/volunteers/{porject}", [ProjectController::class, "project_
 
 Route::get("/volunteers", [VolunteerController::class, "index"]);
 Route::get("/volunteer/projects/{porject}", [VolunteerController::class, "volunteer_projects"]);
-Route::get("/status/volunteer/{volunteer}", [VolunteerController::class, "volunteer_status"]);
+Route::post("/status/volunteer", [VolunteerController::class, "volunteer_status"]);
 
 
 // Contact information
-Route::get("/contact/messages", [ContactController::class, "index"]);
+Route::get("/admin/messages", [ContactController::class, "index"]);
 
 // Newsleeter 
 Route::get("/newsleeters", [NewsletterController::class, "index"]);

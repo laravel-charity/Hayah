@@ -7,7 +7,8 @@
     <div class="card">
         <div class="card-header">
             <h5>All projects</h5>
-            
+            <a href="{{url('/trash/project')}}" class="btn btn-warning float-right ml-2">Archive</a>
+            <a href="/admin/projects/create" class="btn btn-info float-right">Add new</a>
         </div>
         <div class="card-body table-border-style">
             <div class="table-responsive">
@@ -32,7 +33,7 @@
                         @foreach ($projects as $project)
                         <tr>
                             <td>{{++$i}}</td>
-                            <td><img src="data:image/jpg;base64,{{ chunk_split(base64_encode($project->image)) }}"                                " alt=""></td>
+                            <td><img class="wid-150 align-top m-r-15" src="data:image/png;base64,{{ chunk_split(base64_encode($project->image)) }}"                                " alt=""></td>
                             <td>
                                 <a href="/project/volunteers/{{ $project->id }}">
                                     {{ $project->name }}

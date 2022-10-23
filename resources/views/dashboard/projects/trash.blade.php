@@ -5,7 +5,7 @@
 <div class="col-xl-12">
     <div class="card">
         <div class="card-header">
-            <h5>Archive users</h5>
+            <h5>Archive projects</h5>
             
         </div>
         <div class="card-body table-border-style">

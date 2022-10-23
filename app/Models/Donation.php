@@ -19,8 +19,9 @@ class Donation extends Model
     {
         if ($filters["search"] ?? false) {
             $project = Project::where("name", "LIKE", "%" . $filters["search"] . "%")->first();
-            // dd($project);
-            $query->where("project_id", "=", $project->id);
+            $query->where("project_id", "=", $project?->id)
+                ->orWhere("name", "LIKE", "%" . $filters["search"] . "%")
+                ->orWhere("email", "LIKE", "%" . $filters["search"] . "%");
         }
     }
     protected $fillable = ['amount', 'project_id', 'name', 'email'];

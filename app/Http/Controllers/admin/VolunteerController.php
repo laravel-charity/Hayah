@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class VolunteerController extends Controller
 {
@@ -26,11 +27,12 @@ class VolunteerController extends Controller
     }
 
 
-    public function volunteer_status($id)
+    public function volunteer_status(Request $request)
     {
-        $volunteer = Volunteer::find($id);
-        $volunteer->status = "approved";
-        $volunteer->save();
+        $volunteer_project = DB::table('project_volunteer')->where(function ($query) use ($request) {
+            $query->where("project_id", $request->project_id)
+                ->where("volunteer_id", $request->volunteer_id);
+        })->update(["status" => $request->status]);
         return back();
     }
 }

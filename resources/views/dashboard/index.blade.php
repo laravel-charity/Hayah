@@ -2,39 +2,38 @@
 
 
 @section('content')
-    
-<div class="col-xl-12">
     <div class="card">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-2">
-                    <h5>All donations</h5>
+                    <h5>All users</h5>
                 </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
 
                             <select name="role" class="form-control" onchange="location = this.value;">
                                 <option>Role</option>
-                                <option value="/filter/users/all">All</option>
-                                <option value="/filter/users/user">
+                                <option value="/filter/users/all" {{ request()->is("*/all") ? "selected" : "" }}>All</option>
+                                <option value="/filter/users/user" {{ request()->is("*/user") ? "selected" : "" }}>
                                     User
                                 </option>  
-                                <option value="/filter/users/admin">
+                                <option value="/filter/users/admin" {{ request()->is("*/admin") ? "selected" : "" }}>
                                   Admin
                                 </option>
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <form action="/admin/users" class="d-inline">
                             <input type="text" class="form-control w-75 d-inline-block"
                              name="search" placeholder="Search">
                             <button type="submit" class="btn btn-primary" style="margin-bottom: 4px">Search</button>
                             </form>
                         </div>
+                        
+                        <div class="col-md-4">
+                            <a href="/admin/users/create" class="btn btn-info mb-2">Add new</a>
+                            <a href="/trash" class="btn btn-warning mb-2">Archive</a>
+                        </div>
                     </div>
-                </div>
-            </div>
             
         </div>
         <div class="card-body table-border-style">
@@ -46,7 +45,7 @@
                             <th>Image</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -76,5 +75,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

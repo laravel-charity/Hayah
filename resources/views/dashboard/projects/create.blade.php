@@ -5,7 +5,7 @@
     
 <div class="card">
     <div class="card-header">
-        <h5>@yield('page',"Add user")</h5>
+        <h5>@yield('page',"Add project")</h5>
     </div>
     <div class="card-body">
                 <form action="/admin/projects" method="post" style="margin-left: 33%" enctype="multipart/form-data">
@@ -31,7 +31,7 @@
                      @enderror 
                     </div>
                 
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                     <label>Image</label>
                     <input type="file" name="image" class="form-control w-50">
                     @error('image')
@@ -39,7 +39,7 @@
                      {{ $message }}
                     </small>
                     @enderror 
-                </div> --}}
+                    </div>
 
                     <div class="form-group">
                         <label>Target Donation</label>
@@ -81,6 +81,20 @@
                                 @endforeach
                         </select>
                         @error('category_id')
+                        <small class="text-danger">
+                         {{ $message }}
+                     </small>
+                     @enderror 
+                    </div>
+            
+                    <div class="form-group">
+                        <label>Requirements</label>
+                        <select name="requirements" class="form-control w-50">
+                           <option value="donations">Donations</option>
+                           <option value="volunteers">Volunteers</option>
+                           <option value="both">Both</option>
+                        </select>
+                        @error('requirements')
                         <small class="text-danger">
                          {{ $message }}
                      </small>
