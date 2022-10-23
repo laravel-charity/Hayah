@@ -88,7 +88,7 @@ class UsersController extends Controller
             $request->session()->regenerate();
 
             // return redirect('/');
-            return redirect()->intended('/dashboard');
+            return redirect('/dashboard');
         } else if (Auth::attempt($formFields, $remember) && (Gate::denies('admin'))) {
             $request->session()->regenerate();
 
@@ -125,7 +125,11 @@ class UsersController extends Controller
 
             Auth::login($finduser);
 
-            return redirect()->intended('/');
+            if (Gate::allows('admin')) {
+                return redirect('/dashboard');
+            } else if (Gate::denies('admin')) {
+                return redirect()->intended('/');
+            }
         } else {
 
             $newUser                  = new User;

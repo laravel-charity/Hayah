@@ -34,6 +34,11 @@ Route::post('/donate/donateTo/{id}', [ProjectController::class, 'donateTo']);
 
 
 
+
+
+
+
+
 // ---------------------Routes for Registration-----------------------------
 // Show Register Form
 Route::get('/register', [UsersController::class, 'create'])->middleware('guest');
@@ -103,7 +108,7 @@ route::post('newsletterform', [NewsletterController::class, 'store']);
 
 // ---------------------Routes for volunteer-----------------------------
 
-route::get('volunteer',[VolunteerController::class,'create'])->middleware('auth');
+route::get('volunteer', [VolunteerController::class, 'create'])->middleware('auth');
 
 
 
@@ -112,7 +117,7 @@ route::post('volunteers', [VolunteerController::class, 'store']);
 
 
 //chose the project that user would to volunteer in it
-route::get('volunteerInProject/{id}',[VolunteerController::class,'chooseProjectToVolunteer']);
+route::get('volunteerInProject/{id}', [VolunteerController::class, 'chooseProjectToVolunteer']);
 
 
 

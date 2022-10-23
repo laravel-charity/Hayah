@@ -14,5 +14,14 @@ class Donation extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function scopeProject($query, array $filters)
+    {
+        if ($filters["search"] ?? false) {
+            $project = Project::where("name", "LIKE", "%" . $filters["search"] . "%")->first();
+            // dd($project);
+            $query->where("project_id", "=", $project->id);
+        }
+    }
     protected $fillable = ['amount', 'project_id', 'name', 'email'];
 }

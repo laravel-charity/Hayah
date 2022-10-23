@@ -50,7 +50,7 @@ class ProjectController extends Controller
         $request->validate([
             'amount' => 'required_without:amount_text',
             'amount_text' => 'required_without:amount',
-            'name'     => 'required|regex:/^[\pL\s\-]+$/u',
+            'name'     => 'required|regex:/^[a-z ,.\'-]+$/i',
             'email' => 'required|email',
             'project_id' => 'required'
         ]);
