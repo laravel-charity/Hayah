@@ -58,8 +58,9 @@ class ProjectController extends Controller
         $donation->email = $request->email;
         $donation->project_id = $request->project_id;
 
-
-        $donation->user_id = $user->id;
+        if ( Auth::user()) {
+            $donation->user_id = $user->id;
+        }
 
 
         if ($request->amount_text == null) {
