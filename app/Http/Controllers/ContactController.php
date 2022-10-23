@@ -7,30 +7,28 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
- 
+
     public function create()
     {
-            
+
         return view('projects.contact');
     }
 
 
 
-        public function store(Request $request)
+    public function store(Request $request)
     {
-      
-    $validate=$request->validate(
-        [
-            'name'=>'required',
-            'email' => 'required',
-            'message'=>'required',
-        ]
-            
-    );
 
-    $newcontact = Contact::create($validate);
-    return redirect('contact');
+        $validate = $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'message' => 'required',
+            ]
+
+        );
+
+        $newcontact = Contact::create($validate);
+        return redirect('/')->with('message', 'Your message was sent successfully');
     }
-
-
 }

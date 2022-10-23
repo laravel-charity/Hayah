@@ -150,3 +150,16 @@ Route::get('projects/{filter?}', [ProjectController::class, 'filterByCategory'])
 
 // Show Project Details
 Route::get('/project/{id}', [ProjectController::class, 'show']);
+
+// ------------------Routes for Forgot Your Password?-------------------------------
+// Show request to reset password form
+Route::get('/forgot-password', [UsersController::class, 'resetPasswordRequest'])->middleware('guest')->name('password.request');
+
+// Handle validating the email address and sending the password reset request to the corresponding use
+Route::post('/forgot-password', [UsersController::class, 'validateResetPassword'])->middleware('guest')->name('password.email');
+
+// Show reset password form
+Route::get('/reset-password/{token}', [UsersController::class, 'resetPassword'])->middleware('guest')->name('password.reset');
+
+// Handle password reset
+Route::post('/reset-password', [UsersController::class, 'handleResetPassword'])->middleware('guest')->name('password.update');
