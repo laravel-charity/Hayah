@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
         <title>@yield('title')</title>
 
@@ -23,60 +23,60 @@
 
 
 
-</head>
+    </head>
 
-<body id="section_1">
+    <body id="section_1">
 
 
-    <nav class="navbar navbar-expand-lg bg-light shadow-lg">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
-                <span>
-                    Hayat
-                    <small>Non-profit Organization</small>
-                </span>
-            </a>
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
+                    <span>
+                        Hayat
+                        <small>Non-profit Organization</small>
+                    </span>
+                </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
 
-                        <a class="nav-link {{ request()->is('/') || request()->is('home') ? 'active' : '' }}"
-                            href="/home">Home</a>
+                            <a class="nav-link {{ request()->is('/') || request()->is('home') ? 'active' : '' }}"
+                                href="/home">Home</a>
 
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('projects*') ? 'active' : '' }}"
-                            href="/projects">Projects</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('projects*') ? 'active' : '' }}"
+                                href="/projects">Projects</a>
+                        </li>
 
-                    @if (auth()->user())
-                           <li class="nav-item">
-                        <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
-                            href="/volunteer">Volunteer</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('volunteer*') ? 'active' : '' }}"
+                                href="/volunteer">Volunteer</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}" href="/about">About</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}" href="/about">About</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="/contact">Contact</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}"
+                                href="/contact">Contact</a>
 
-                    </li>
+                        </li>
 
-                    
-                </ul>
 
-                <ul class="navbar-nav ms-auto">
-                    @auth
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        @auth
 
                         {{-- if user logged in --}}
 
@@ -84,7 +84,6 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
-
                                     src="{{ asset('storage/' . auth()->user()->image) }}" class="img-fluid avatar-image"
                                     alt=""></a>
 
@@ -93,10 +92,10 @@
                                 <li><a class="dropdown-item" href="/profile">View Profile</a></li>
                                 <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
                                 @if (Auth::user()->google_id == null)
-                                    <li>
-                                        <a class="dropdown-item" style="font-size:17px;" href="/changepass">Change
-                                            password</a>
-                                    </li>
+                                <li>
+                                    <a class="dropdown-item" style="font-size:17px;" href="/changepass">Change
+                                        password</a>
+                                </li>
 
                                 @endif
                                 <li>
@@ -133,61 +132,61 @@
                         <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
                     </div>
 
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <h5 class="site-footer-title mb-3">Quick Links</h5>
 
 
 
-                    <ul class="footer-menu">
+                        <ul class="footer-menu">
 
 
 
-                        <li class="footer-menu-item"><a href="/" class="footer-menu-link">Home</a></li>
-                        <li class="footer-menu-item"><a href="/about" class="footer-menu-link">Our Story</a></li>
-                        <li class="footer-menu-item"><a href="/register" class="footer-menu-link">Join Us</a></li>
-                        <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
+                            <li class="footer-menu-item"><a href="/" class="footer-menu-link">Home</a></li>
+                            <li class="footer-menu-item"><a href="/about" class="footer-menu-link">Our Story</a></li>
+                            <li class="footer-menu-item"><a href="/register" class="footer-menu-link">Join Us</a></li>
+                            <li class="footer-menu-item"><a href="/projects" class="footer-menu-link">Projects</a></li>
 
 
 
-                        @if (auth()->user())
+                            @if (auth()->user())
 
                             <li class="footer-menu-item"><a href="/volunteer" class="footer-menu-link">Become a
                                     volunteer</a></li>
-                        @endif
+                            @endif
 
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
 
 
-                <div class="col-lg-4 col-md-6 col-12 mx-auto" style="padding-bottom:10px;">
-                    <form class="custom-form subscribe-form" action="newsletterform" method="post"
-                        style="width: 400px; ">
-                        @csrf
-                        <h5 class="mb-4">Newsletter Form</h5>
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto" style="padding-bottom:10px;">
+                        <form class="custom-form subscribe-form" action="newsletterform" method="post"
+                            style="width: 400px; ">
+                            @csrf
+                            <h5 class="mb-4">Newsletter Form</h5>
 
-                        <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
-                            class="form-control" placeholder="Email Address" required>
+                            <input type="email" name="email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
+                                class="form-control" placeholder="Email Address" required>
 
                             @error('email')
                             <div class="alert alert-danger" style="width:90%">{{ $message }}</div>
-                          @enderror
+                            @enderror
 
-                        <div class="col-lg-12 col-12">
-                            <button type="submit" class="form-control">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
+                            <div class="col-lg-12 col-12">
+                                <button type="submit" class="form-control">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
 
 
-                <!-- JAVASCRIPT FILES -->
-                <script src="{{ asset('js/jquery.min.js') }}"></script>
-                <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-                <script src="{{ asset('js/jquery.sticky.js') }}"></script>
-                {{-- <script src="{{ asset('js/click-scroll.js') }}"></script> --}}
-                <script src="{{ asset('js/counter.js') }}"></script>
-                <script src="{{ asset('js/custom.js') }}"></script>
+                    <!-- JAVASCRIPT FILES -->
+                    <script src="{{ asset('js/jquery.min.js') }}"></script>
+                    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+                    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+                    {{-- <script src="{{ asset('js/click-scroll.js') }}"></script> --}}
+                    <script src="{{ asset('js/counter.js') }}"></script>
+                    <script src="{{ asset('js/custom.js') }}"></script>
 
 
     </body>

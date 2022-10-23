@@ -7,7 +7,6 @@ use App\Models\Project;
 
 use App\Models\Category;
 use App\Models\Donation;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +30,10 @@ class ProjectController extends Controller
 
         $accomplished = Project::orderBy('id', 'desc')->where('status', 'accomplished')->take(3)->get();
 
-        return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished]);
+        $volunteerId = Category::where('name', 'volunteer')->get();
+
+
+        return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished, 'volunteerId' => $volunteerId[0]->id]);
     }
 
 
