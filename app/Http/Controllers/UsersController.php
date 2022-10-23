@@ -97,7 +97,7 @@ class UsersController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->with('email' ,'Wrong Email or Password');
+        return back()->with('email', 'Wrong Email or Password');
     }
 
     public function redirectToGoogle()
@@ -120,7 +120,7 @@ class UsersController extends Controller
             return $e;
         }
 
-        $finduser = DB::where('google_id', $user->id)->first();
+        $finduser = user::where('google_id', $user->id)->first();
 
         if ($finduser) {
 
