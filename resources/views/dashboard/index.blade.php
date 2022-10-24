@@ -18,7 +18,7 @@
                                 <option value="/filter/users/all" {{ request()->is("*/all") ? "selected" : "" }}>All</option>
                                 <option value="/filter/users/user" {{ request()->is("*/user") ? "selected" : "" }}>
                                     User
-                                </option>  
+                                </option>
                                 <option value="/filter/users/admin" {{ request()->is("*/admin") ? "selected" : "" }}>
                                   Admin
                                 </option>
@@ -31,13 +31,13 @@
                             <button type="submit" class="btn btn-primary" style="margin-bottom: 4px">Search</button>
                             </form>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <a href="/admin/users/create" class="btn btn-info mb-2">Add new</a>
                             <a href="/trash" class="btn btn-warning mb-2">Archive</a>
                         </div>
                     </div>
-            
+
         </div>
         <div class="card-body table-border-style">
             <div class="table-responsive">
@@ -60,7 +60,7 @@
                         <tr>
                             {{-- <td>{{ ($users->currentpage()-1) * $users->perpage() + $key + 1 }}</td> --}}
                             <td>{{ $i++ }}</td>
-                            <td><img src="{{ asset('img/' . $user->image) }} " style="width:80px" alt=""></td>
+                            <td><img src="{{ asset('storage/' . $user->image) }}"style="width:80px" alt=""></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>

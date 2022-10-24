@@ -160,7 +160,7 @@
                 <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                     <div class="custom-block-wrap">
                         <a href="/project/{{ $event->id }}">
-                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($event->image)) }}"
+                            <img src="{{ asset('storage/' . $event->image) }}"
                                 class="custom-block-image img-fluid" alt="">
                         </a>
                         <div class="custom-block">
@@ -249,7 +249,7 @@
                 <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                     <div class="custom-block-wrap">
                         <a href="/project/{{ $event->id }}">
-                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($event->image)) }}"
+                            <img src="{{ asset('storage/' . $event->image) }}"
                                 class="custom-block-image img-fluid" alt="">
                         </a>
                         <div class="custom-block">

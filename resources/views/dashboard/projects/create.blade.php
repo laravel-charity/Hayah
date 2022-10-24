@@ -6,16 +6,16 @@
 @section('breadcrumb','create project')
 
 @section('content')
-    
+
 <div class="card">
     <div class="card-header">
         <h5>@yield('page',"Add project")</h5>
     </div>
     <div class="card-body">
                 <form action="/admin/projects" method="post" style="margin-left: 33%" enctype="multipart/form-data">
-                    @csrf       
-                    
-                                    
+                    @csrf
+
+
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" name="name" class="form-control w-50" id="exampleInputPassword1" placeholder="Name">
@@ -23,7 +23,7 @@
                    <small class="text-danger">
                     {{ $message }}
                 </small>
-                @enderror 
+                @enderror
                     </div>
                     <div class="form-group">
                         <label>Description</label>
@@ -32,9 +32,9 @@
                         <small class="text-danger">
                          {{ $message }}
                      </small>
-                     @enderror 
+                     @enderror
                     </div>
-                
+
                     <div class="form-group">
                     <label>Image</label>
                     <input type="file" name="image" class="form-control w-50">
@@ -42,7 +42,7 @@
                     <small class="text-danger">
                      {{ $message }}
                     </small>
-                    @enderror 
+                    @enderror
                     </div>
 
                     <div class="form-group">
@@ -52,7 +52,7 @@
                         <small class="text-danger">
                          {{ $message }}
                      </small>
-                     @enderror 
+                     @enderror
                     </div>
                     <div class="form-group">
                         <label>Starting Date</label>
@@ -61,8 +61,8 @@
                         <small class="text-danger">
                          {{ $message }}
                      </small>
-                     @enderror 
-                    
+                     @enderror
+
                     </div>
                     <div class="form-group">
                         <label>Status</label>
@@ -71,7 +71,7 @@
                         <small class="text-danger">
                          {{ $message }}
                      </small>
-                     @enderror 
+                     @enderror
                     </div>
 
                     <div class="form-group">
@@ -88,9 +88,9 @@
                         <small class="text-danger">
                          {{ $message }}
                      </small>
-                     @enderror 
+                     @enderror
                     </div>
-            
+
                     <div class="form-group">
                         <label>Requirements</label>
                         <select name="requirements" class="form-control w-50">
@@ -102,9 +102,9 @@
                         <small class="text-danger">
                          {{ $message }}
                      </small>
-                     @enderror 
+                     @enderror
                     </div>
-                    
+
                     <button type="submit" class="btn  btn-primary">Submit</button>
                 </form>
             </div>

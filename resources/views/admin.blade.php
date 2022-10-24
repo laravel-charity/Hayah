@@ -158,7 +158,7 @@
                                     <tr>
                                         <td>
                                         <div class="d-inline-block align-middle">
-                                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($project->image)) }}" alt="Project image" class="wid-150 align-top m-r-15">
+                                            <img src="{{ asset('storage/' . $project->image) }}" alt="Project image" class="wid-150 align-top m-r-15">
                                             <div class="d-inline-block">
                                                 <h6>{{ $project->name }}</h6>
                                                 <p class="text-muted m-b-0">{{ $project->category->name }}</p>

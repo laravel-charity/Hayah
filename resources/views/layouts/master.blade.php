@@ -28,7 +28,7 @@
     <body id="section_1">
 
 
-        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg ">
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">

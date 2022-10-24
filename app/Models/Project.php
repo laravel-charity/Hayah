@@ -41,9 +41,9 @@ class Project extends Model
     // Filter By Status
     public function scopeFilter($query, array $filters)
     {
-        // if ($filters['status'] ?? false) {
-        //     $query->where('status', 'like', '%' . request('status') . '%');
-        // }
+        if ($filters['status'] ?? false) {
+            $query->where('status', 'like', '%' . request('status') . '%');
+        }
         if ($filters["search"] ?? false) {
 
             $category = Category::where("name", "like", '%' .  $filters["search"] . '%')->first();

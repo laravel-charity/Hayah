@@ -50,14 +50,14 @@ class ProjectController extends Controller
             "category_id" => "required",
             "requirements" => "required",
         ]);
-
         // $imageName = time() . "." . $request->image->extension();
         // $request->image->move(public_path('images'), $imageName);
-        $image = base64_encode(file_get_contents($request->file('image')));
+        // $image = base64_encode(file_get_contents($request->file('image')));
+
         $project = new Project();
         $project->name = $request->name;
         $project->description = $request->description;
-        $project->image = $image;
+        $project->image =  $request->file('image')->store('logos', 'public');
         $project->target_donations = $request->target_donations;
         $project->starting_date = $request->starting_date;
         $project->status = $request->status;
@@ -115,8 +115,7 @@ class ProjectController extends Controller
         // $image = base64_encode(file_get_contents($request->file('image')));
         $project = Project::find($id);
         if ($request->image) {
-            $image = base64_encode(file_get_contents($request->image));
-            $project->image = $image;
+            $project->image =  $request->file('image')->store('logos', 'public');
         }
         $project->name = $request->name;
         $project->description = $request->description;
