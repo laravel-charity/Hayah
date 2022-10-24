@@ -11,7 +11,7 @@
             <div class="col-lg-5 col-12">
                 <div class="news-block">
                     <div class="news-block-top">
-                        <img src="data:image/png;base64,{{ chunk_split(base64_encode($project->image)) }}"
+                        <img src="{{ asset('storage/' . $project->image) }}"
                             class="news-image img-fluid w-100" alt="">
                     </div>
 

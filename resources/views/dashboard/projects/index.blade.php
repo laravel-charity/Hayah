@@ -5,7 +5,7 @@
 @section('breadcrumb','projects')
 
 @section('content')
-    
+
 <div class="col-xl-12">
     <div class="card">
         <div class="card-header">
@@ -13,7 +13,7 @@
                 <div class="col-md-4">
                     <h5>All projects</h5>
                 </div>
-    
+
                 <div class="col-md-4">
                     <form action="/admin/projects" class="d-inline">
                     <input type="text" class="form-control w-75 d-inline-block"
@@ -27,8 +27,8 @@
                     <a href="/admin/projects/create" class="btn btn-info float-right">Add new</a>
                 </div>
             </div>
-            
-            
+
+
         </div>
         <div class="card-body table-border-style">
             <div class="table-responsive">
@@ -53,7 +53,7 @@
                         @foreach ($projects as $project)
                         <tr>
                             <td>{{++$i}}</td>
-                            <td><img class="wid-150 align-top m-r-15" src="data:image/png;base64,{{ chunk_split(base64_encode($project->image)) }}"                                " alt=""></td>
+                            <td><img class="wid-150 align-top m-r-15" src="{{ asset('storage/' . $project->image) }}" alt=""></td>
                             <td>
                                 <a href="/project/volunteers/{{ $project->id }}">
                                     {{ $project->name }}
@@ -66,7 +66,7 @@
                             <td>{{ $project->category->name }}</td>
                             <td>
                                 <a href="/admin/projects/{{ $project->id }}/edit" class="btn  btn-primary d-inline">Edit</a>
-                                
+
                                 <form action="/admin/projects/{{ $project->id }}" method="post" class="d-inline">
                                     @csrf
                                     @method("DELETE")

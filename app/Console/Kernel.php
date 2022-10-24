@@ -19,8 +19,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
-            DB::table('projects')->whereDate('starting_date', '<=', now())->where('status', '!=', 'completed')->update(['status' => 'in progress']);
-            DB::table('projects')->whereDate('starting_date', '>', now())->update(['status' => 'active']);
+            DB::table('projects')->whereDate('starting_date', '<', now())->update(['status' => 'in progress']);
         })->everyMinute();
 
         $schedule->call(function () {

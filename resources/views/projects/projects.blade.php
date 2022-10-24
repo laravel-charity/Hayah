@@ -67,7 +67,7 @@
                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block-wrap">
                             <a href="/project/{{ $project->id }}">
-                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($project->image)) }}"
+                                <img src="{{ asset('storage/' . $project->image) }}"
                                     class="custom-block-image img-fluid" alt="">
                             </a>
                             <div class="custom-block">
