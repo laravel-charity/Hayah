@@ -12,9 +12,15 @@ Our Website Is my hayat project which demonstrates my abilities in building a co
 Team members :
 
 1- Mohammed Khalel
-2- Jafar AL-Dakhily
-3- Ibrahem jebreen
-4- Dua`a Nawaas
+
+2- Jafer AL-Dakhily
+
+3- Ibrahim jebreen
+
+4- Dua`a Nawwas
+
 5- Ahmad Salman
-6- Osama AlDassoky
+
+6- Osama AlDasooky
+
 7- Sara Abed

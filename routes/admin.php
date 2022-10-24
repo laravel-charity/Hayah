@@ -101,12 +101,12 @@ Route::post("/admin/sendNewsletter", [EmailController::class, 'sendNewsletter'])
 
 
 //view profile - ahmad
-Route::get("/dashboard/profile/{id}", [ProfileController::class, 'adminprofile']);
+Route::get("/dashboard/profile/{id}", [ProfileController::class, 'adminprofile'])->middleware(["auth", "can:admin"]);
 
 // update profile picture - ahmda
-Route::post("dashboard/profile/updateAdminPhoto", [ProfileController::class, 'updateAdminPhoto']);
+Route::post("dashboard/profile/updateAdminPhoto", [ProfileController::class, 'updateAdminPhoto'])->middleware(["auth", "can:admin"]);
 
 // update admin info - ahmad 
-Route::post("/updateAdmin", [ProfileController::class, 'updateAdmin']);
+Route::post("/updateAdmin", [ProfileController::class, 'updateAdmin'])->middleware(["auth", "can:admin"]);
 
 
