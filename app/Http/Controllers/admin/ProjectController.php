@@ -17,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::latest()->get();
+        $projects = Project::latest()->filter(request(["search"]))->get();
         return view("dashboard.projects.index", ["projects" => $projects]);
     }
 
@@ -40,7 +40,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->file("image"));
         $request->validate([
             "name" => "required",
             "description" => "required",
@@ -88,7 +87,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        return view("dashboard.projects.edit", ["project" => $project]);
+        return view("dashboard.projects.edit", ["project" => $project, "categories" => Category::all()]);
     }
 
     /**
@@ -100,10 +99,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
+
         $request->validate([
             "name" => "required",
             "description" => "required",
-            "image" => "required|image|mimes:png,jpg|max:2048",
+            "image" => "image|mimes:png,jpg|max:2048",
             "target_donations" => "required",
             "starting_date" => "required",
             "status" => "required",
@@ -111,11 +112,14 @@ class ProjectController extends Controller
             "requirements" => "required",
         ]);
 
-        $image = base64_encode(file_get_contents($request->file('image')));
+        // $image = base64_encode(file_get_contents($request->file('image')));
         $project = Project::find($id);
+        if ($request->image) {
+            $image = base64_encode(file_get_contents($request->image));
+            $project->image = $image;
+        }
         $project->name = $request->name;
         $project->description = $request->description;
-        $project->image = $image;
         $project->target_donations = $request->target_donations;
         $project->starting_date = $request->starting_date;
         $project->status = $request->status;

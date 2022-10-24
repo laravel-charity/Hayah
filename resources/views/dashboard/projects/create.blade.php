@@ -1,6 +1,10 @@
 @extends('layouts.master-admin')
 
 
+@section('title','create project')
+
+@section('breadcrumb','create project')
+
 @section('content')
     
 <div class="card">

@@ -118,7 +118,6 @@ class UsersController extends Controller
     {
 
         try {
-
             $user = Socialite::driver('google')->user();
         } catch (Exception $e) {
 

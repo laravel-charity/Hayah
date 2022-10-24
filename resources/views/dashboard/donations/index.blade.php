@@ -1,6 +1,8 @@
 @extends('layouts.master-admin')
 
 
+@section('title','donations')
+
 @section('content')
     
 <div class="col-xl-12">

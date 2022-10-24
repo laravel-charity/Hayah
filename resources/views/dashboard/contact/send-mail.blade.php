@@ -1,5 +1,8 @@
 @extends('layouts.master-admin')
 
+@section('title','send message')
+
+@section('breadcrumb','reply message')
 
 @section('content')
     <div class="card">

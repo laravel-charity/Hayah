@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->save();
-        return redirect("/");
+        return redirect("/admin/categories");
     }
 
     /**

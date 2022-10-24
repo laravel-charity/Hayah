@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->filter(request(["search"]))->get();
+        $users = User::latest()->filter(request(["search", "role"]))->get();
         return view("dashboard.index", ["users" => $users]);
     }
 
@@ -50,7 +50,7 @@ class AdminController extends Controller
         $user->role = $request->role;
         $user->password = $request->password;
         $user->save();
-        return redirect("/");
+        return redirect("/dashboard");
     }
 
     /**

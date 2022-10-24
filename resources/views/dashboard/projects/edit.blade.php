@@ -1,6 +1,10 @@
 @extends('layouts.master-admin')
 
 
+@section('title','edit project')
+
+@section('breadcrumb','edit project')
+
 @section('content')
     
 <div class="card">
@@ -65,6 +69,38 @@
                 <label>Status</label>
                 <input type="text" name="status" class="form-control w-50" value="{{$project->status}}" id="exampleInputPassword1" placeholder="Status">
                 @error('status')
+                <small class="text-danger">
+                 {{ $message }}
+             </small>
+             @enderror 
+            </div>
+
+            
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category_id" class="form-control w-50">
+                    {{-- <option>Select category</option> --}}
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ $category->id == $project->category_id ? 'selected' : ''  }}>
+                            {{ $category->name }}
+                        </option>
+                        @endforeach
+                </select>
+                @error('category_id')
+                <small class="text-danger">
+                 {{ $message }}
+             </small>
+             @enderror 
+            </div>
+    
+            <div class="form-group">
+                <label>Requirements</label>
+                <select name="requirements" class="form-control w-50">
+                   <option value="donations" {{ $project->requirements == 'donations' ? 'selected' : '' }}>Donations</option>
+                   <option value="volunteers" {{ $project->requirements == 'volunteers' ? 'selected' : '' }}>Volunteers</option>
+                   <option value="both" {{ $project->requirements == 'both' ? 'selected' : '' }}>Both</option>
+                </select>
+                @error('requirements')
                 <small class="text-danger">
                  {{ $message }}
              </small>

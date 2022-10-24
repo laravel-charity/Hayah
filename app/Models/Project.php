@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    use HasFactory ,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     // protected $fillable = [
     //     'name',
@@ -41,18 +41,23 @@ class Project extends Model
     // Filter By Status
     public function scopeFilter($query, array $filters)
     {
-        if ($filters['status'] ?? false) {
-            $query->where('status', 'like', '%' . request('status') . '%');
-        }
+        // if ($filters['status'] ?? false) {
+        //     $query->where('status', 'like', '%' . request('status') . '%');
+        // }
+        if ($filters["search"] ?? false) {
 
-        $category = Category::where("name", "like", '%' .  request("search") . '%')->first();
+            $category = Category::where("name", "like", '%' .  $filters["search"] . '%')->first();
 
-        if ($filters['search'] ?? false) {
-            $query->where('name', 'like', '%' . request('search') . '%')
-                ->orWhere('description', 'like', '%' . request('search') . '%')
-                ->orWhere('status', 'like', '%' . request('search') . '%')
-                ->orWhere('starting_date', 'like', '%' . request('search') . '%')
-                ->orWhere("category_id", "=", $category?->id);
+            if ($filters['search'] ?? false) {
+                self::where(function () use ($query, $filters, $category) {
+                    $query->where('name', 'like', '%' . $filters['search'] . '%')
+                        ->orWhere('description', 'like', '%' . $filters['search'] . '%')
+                        ->orWhere('status', 'like', '%' . $filters['search'] . '%')
+                        ->orWhere('starting_date', 'like', '%' . $filters['search'] . '%')
+                        ->orWhere("category_id", "=", $category?->id)
+                        ->orWhere('status', 'like', '%' . $filters['search'] . '%');
+                });
+            }
         }
     }
 }

@@ -1,5 +1,8 @@
 @extends('layouts.master-admin')
 
+@section('title','users')
+
+@section('breadcrumb','users')
 
 @section('content')
     <div class="card">
@@ -51,11 +54,12 @@
                     </thead>
                     <tbody>
                         @php
-                            $i = 0;
+                            $i = 1;
                         @endphp
-                        @foreach ($users as $user)
+                        @foreach ($users as $key => $user)
                         <tr>
-                            <td>{{ ++$i }}</td>
+                            {{-- <td>{{ ($users->currentpage()-1) * $users->perpage() + $key + 1 }}</td> --}}
+                            <td>{{ $i++ }}</td>
                             <td><img src="{{ asset('img/' . $user->image) }} " style="width:80px" alt=""></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
@@ -71,6 +75,7 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    {{-- {{ $users->links() }}  --}}
                 </table>
             </div>
         </div>
