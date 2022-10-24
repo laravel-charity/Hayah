@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\EmailController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\CategoryController;
@@ -10,7 +12,6 @@ use App\Http\Controllers\admin\DonationController;
 use App\Http\Controllers\admin\StatisticController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\NewsletterController;
-use App\Http\Controllers\admin\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,4 +94,19 @@ Route::post("/admin/sendEmail", [EmailController::class, 'send'])->middleware(["
 Route::get("/admin/sendNewsletterForm", [EmailController::class, 'sendNewsletterForm'])->middleware(["auth", "can:admin"]);
 
 Route::post("/admin/sendNewsletter", [EmailController::class, 'sendNewsletter'])->middleware(["auth", "can:admin"]);
+
+
+
+// ------------------- Routes for admin profile -------------------
+
+
+//view profile - ahmad
+Route::get("/dashboard/profile/{id}", [ProfileController::class, 'adminprofile']);
+
+// update profile picture - ahmda
+Route::post("dashboard/profile/updateAdminPhoto", [ProfileController::class, 'updateAdminPhoto']);
+
+// update admin info - ahmad 
+Route::post("/updateAdmin", [ProfileController::class, 'updateAdmin']);
+
 
