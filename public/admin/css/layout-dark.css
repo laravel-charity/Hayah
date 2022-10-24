@@ -229,7 +229,7 @@ a.text-secondary.btn, a.text-secondary.btn:Active, a.text-secondary.btn:focus, a
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
-    color: #fff !important;
+    color: #000 !important;
     background-color: rgba(173, 183, 190, 0.1);
 }
 

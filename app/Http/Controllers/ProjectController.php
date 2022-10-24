@@ -30,7 +30,7 @@ class ProjectController extends Controller
 
         $accomplished = Project::orderBy('id', 'desc')->where('status', 'accomplished')->take(3)->get();
 
-        $volunteerId = Category::where('name', 'volunteer')->get();
+        $volunteerId = Project::where('requirements', 'volunteers')->orWhere('requirements', 'both')->get();
 
 
         return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished, 'volunteerId' => $volunteerId[0]->id]);
@@ -52,7 +52,7 @@ class ProjectController extends Controller
         $request->validate([
             'amount' => 'required_without:amount_text',
             'amount_text' => 'required_without:amount',
-            'name'     => 'required|regex:/^[\pL\s\-]+$/u',
+            'name'     => 'required|regex:/^[a-z ,.\'-]+$/i',
             'email' => 'required|email',
             'project_id' => 'required'
         ]);
@@ -60,8 +60,9 @@ class ProjectController extends Controller
         $donation->email = $request->email;
         $donation->project_id = $request->project_id;
 
-
-        $donation->user_id = $user->id;
+        if ( Auth::user()) {
+            $donation->user_id = $user->id;
+        }
 
 
         if ($request->amount_text == null) {

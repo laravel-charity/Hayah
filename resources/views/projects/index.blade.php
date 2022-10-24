@@ -123,7 +123,10 @@
             </div>
         </div>
 
-    </section>
+
+        </section>
+
+
 
 
 
@@ -180,6 +183,7 @@
                                 <div class="progress mt-4">
                                     <div class="progress-bar" style="width: {{ $width }}% " role="progressbar"
                                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center my-2">

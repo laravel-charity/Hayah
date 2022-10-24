@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -110,7 +111,7 @@ class ProfileController extends Controller
         //Assign the new values
         $user->name = $request->name;
 
-       if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $user->image = $request->file('image')->store('logos', 'public');
         }
 
@@ -173,5 +174,58 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // ------------------- admin profile -------------------
+    // Profile page - ahmad
+    public function adminprofile($id)
+    {
+        $admin = User::find($id);
+        $volunteerProject = Volunteer::where("user_id", $id)->get();
+
+        return view('dashboard.profile.profile', ['userData' => $admin, 'volunteerProject' => $volunteerProject]);
+    }
+    // update profile picture - ahmad
+
+    public function updateAdminPhoto(Request $request)
+    {
+
+        $user = Auth::user();
+
+        $val = $request->validate(['image' => 'required']);
+
+        $user->image = $request->file('image')->store('logos', 'public');
+        $user->save();
+        return redirect()->back();
+    }
+
+    // update admin info - ahmad
+
+    public function updateAdmin(Request $request)
+    {
+        // dd($request);
+        $user = Auth::user();
+        $request->validate(
+            [
+                'name' => ['required', 'min:3'],
+                'email' => ['required', 'email'],
+            ]
+        );
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($user->volunteer != null) {
+
+            $request->validate([
+                'phone' => 'required|numeric|digits:10',
+                'city' => 'required',
+            ]);
+            $volunteer = volunteer::find($user->id);
+            $volunteer->phone = $request->phone;
+            $volunteer->city = $request->city;
+            $volunteer->description = $request->description;
+            $volunteer->save();
+        }
+        $user->save();
+        return back()->with('message', 'information changed successfully');
     }
 }
