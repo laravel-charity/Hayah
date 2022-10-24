@@ -8,11 +8,7 @@
     {{ $message }}
 </div>
 @endif
-@if (session()->has('message'))
-<div class="alert alert-success text-center">
-    {{ session()->get('message') }}
-</div>
-@endif
+
 <section class="section-padding">
 
     <div class="container">

@@ -7,11 +7,7 @@
 <main>
 
     @section('content')
-    @if (session()->has('message'))
-    <div class="alert alert-success text-center">
-        {{ session()->get('message') }}
-    </div>
-    @endif
+
     <section class="hero-section hero-section-full-height">
         <div class="container-fluid">
             <div class="row">
@@ -102,7 +98,7 @@
 
                 <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
                     <div class="featured-block d-flex justify-content-center align-items-center">
-                        <a href="projects" class="d-block">
+                        <a href="/donationto" class="d-block">
                             <img src="images/icons/receive.png" class="featured-block-image img-fluid" alt="">
 
                             <p class="featured-block-text">Make a <strong>Donation</strong></p>
@@ -112,7 +108,7 @@
 
                 <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                     <div class="featured-block d-flex justify-content-center align-items-center">
-                        <a href="donate.html" class="d-block">
+                        <a href="projects/{{$scholarId}}" class="d-block">
                             <img src="images/icons/scholarship.png" class="featured-block-image img-fluid" alt="">
 
                             <p class="featured-block-text"><strong>Scholarship</strong> Program</p>

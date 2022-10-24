@@ -9,7 +9,7 @@ use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\NewsletterController;
 
 use App\Http\Controllers\ProfileController;
-
+use App\Models\Donation;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ route::post('contactForm', [ContactController::class, 'store']);
 // ---------------------Routes for about-----------------------------
 
 Route::get('/about', function () {
-    return view('projects.about');
+    return view('projects.about', ['donations' => Donation::all()]);
 });
 
 
@@ -108,7 +108,7 @@ route::post('newsletterform', [NewsletterController::class, 'store']);
 
 // ---------------------Routes for volunteer-----------------------------
 
-route::get('volunteer', [VolunteerController::class, 'create'])->middleware('auth');
+route::get('volunteer', [VolunteerController::class, 'create']);
 
 
 

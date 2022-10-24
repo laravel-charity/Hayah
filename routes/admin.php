@@ -26,71 +26,71 @@ use App\Http\Controllers\admin\EmailController;
 
 
 // Admin users
-Route::resource("/admin/users", AdminController::class);
+Route::resource("/admin/users", AdminController::class)->middleware(["auth", "can:admin"]);
 
-Route::get("/filter/users/{role}", [AdminController::class, "filterByRole"]);
+Route::get("/filter/users/{role}", [AdminController::class, "filterByRole"])->middleware(["auth", "can:admin"]);
 // Route::get("/filter/users/{role}", function ($role = "") {
 // dd("hi");
 // });
 
 // softDelete users
 
-Route::get("/trash", [AdminController::class, "trashed"]);
+Route::get("/trash", [AdminController::class, "trashed"])->middleware(["auth", "can:admin"]);
 
-Route::get("/restore/{id}", [AdminController::class, "restore"]);
+Route::get("/restore/{id}", [AdminController::class, "restore"])->middleware(["auth", "can:admin"]);
 
 // Route::get("/force-delete/{user}", [AdminController::class, "forceDelete"]);
 
 
 // Admin projects
-Route::resource("/admin/projects", ProjectController::class);
+Route::resource("/admin/projects", ProjectController::class)->middleware(["auth", "can:admin"]);
 
-Route::get("/trash/project", [ProjectController::class, "trashed"]);
+Route::get("/trash/project", [ProjectController::class, "trashed"])->middleware(["auth", "can:admin"]);
 
-Route::get("/restore/project/{id}", [ProjectController::class, "restore"]);
+Route::get("/restore/project/{id}", [ProjectController::class, "restore"])->middleware(["auth", "can:admin"]);
 
 // Admin categories routes
 
-Route::resource("/admin/categories", CategoryController::class);
+Route::resource("/admin/categories", CategoryController::class)->middleware(["auth", "can:admin"]);
 
-Route::get("/trash/category", [CategoryController::class, "trashed"]);
-Route::get("/restore/category/{category}", [CategoryController::class, "restore"]);
+Route::get("/trash/category", [CategoryController::class, "trashed"])->middleware(["auth", "can:admin"]);
+Route::get("/restore/category/{category}", [CategoryController::class, "restore"])->middleware(["auth", "can:admin"]);
 
 
-Route::get("/project/volunteers/{porject}", [ProjectController::class, "project_volunteers"]);
+Route::get("/project/volunteers/{porject}", [ProjectController::class, "project_volunteers"])->middleware(["auth", "can:admin"]);
 
 
 // Admin volunteers routes
 
-Route::get("/volunteers", [VolunteerController::class, "index"]);
-Route::get("/volunteer/projects/{porject}", [VolunteerController::class, "volunteer_projects"]);
-Route::post("/status/volunteer", [VolunteerController::class, "volunteer_status"]);
+Route::get("/volunteers", [VolunteerController::class, "index"])->middleware(["auth", "can:admin"]);
+Route::get("/volunteer/projects/{porject}", [VolunteerController::class, "volunteer_projects"])->middleware(["auth", "can:admin"]);
+Route::post("/status/volunteer", [VolunteerController::class, "volunteer_status"])->middleware(["auth", "can:admin"]);
 
 
 // Contact information
-Route::get("/admin/messages", [ContactController::class, "index"]);
+Route::get("/admin/messages", [ContactController::class, "index"])->middleware(["auth", "can:admin"]);
 
 // Newsleeter
-Route::get("/newsleeters", [NewsletterController::class, "index"]);
+Route::get("/newsleeters", [NewsletterController::class, "index"])->middleware(["auth", "can:admin"]);
 
 
 // Donations
-Route::get("/donations", [DonationController::class, "index"]);
+Route::get("/donations", [DonationController::class, "index"])->middleware(["auth", "can:admin"]);
 
 
 
 //----------------------statistics------------------------
 
-Route::get("/dashboard", [StatisticController::class, "statistics"])->can("admin");
+Route::get("/dashboard", [StatisticController::class, "statistics"])->middleware(["auth", "can:admin"]);
 
 
 // ------------------- Routes for Emails -------------------
 
-Route::get("/admin/sendEmail/{id}", [EmailController::class, 'sendMail']);
+Route::get("/admin/sendEmail/{id}", [EmailController::class, 'sendMail'])->middleware(["auth", "can:admin"]);
 
-Route::post("/admin/sendEmail", [EmailController::class, 'send']);
+Route::post("/admin/sendEmail", [EmailController::class, 'send'])->middleware(["auth", "can:admin"]);
 
-Route::get("/admin/sendNewsletterForm", [EmailController::class, 'sendNewsletterForm']);
+Route::get("/admin/sendNewsletterForm", [EmailController::class, 'sendNewsletterForm'])->middleware(["auth", "can:admin"]);
 
-Route::post("/admin/sendNewsletter", [EmailController::class, 'sendNewsletter']);
+Route::post("/admin/sendNewsletter", [EmailController::class, 'sendNewsletter'])->middleware(["auth", "can:admin"]);
 

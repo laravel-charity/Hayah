@@ -160,7 +160,7 @@ class ProfileController extends Controller
             return redirect('profile')->with('message', 'password changed successfully');
         };
 
-        return redirect('changepass')->with('message', 'invalid password ');
+        return redirect('changepass')->with('error_message', 'invalid password ');
     }
 
 

@@ -30,10 +30,12 @@ class ProjectController extends Controller
 
         $accomplished = Project::orderBy('id', 'desc')->where('status', 'accomplished')->take(3)->get();
 
-        $volunteerId = Project::where('requirements', 'volunteers')->orWhere('requirements', 'both')->get();
+        // $volunteerId = Project::where('requirements', 'volunteers')->orWhere('requirements', 'both')->get();
+        $volunteerId = Category::find(1);   // for caring earth
+        $scholarId = Category::find(2); // for scholar category
 
 
-        return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished, 'volunteerId' => $volunteerId[0]->id]);
+        return view('projects.index', ['events' => $events, 'in_progress' => $in_progress, 'accomplished' => $accomplished, 'volunteerId' => $volunteerId->id, 'scholarId' => $scholarId->id]);
     }
 
 
@@ -73,8 +75,7 @@ class ProjectController extends Controller
 
         $donation->save();
 
-
-        return redirect()->intended('/')->with('message', 'Thank you for your donation');
+        return redirect('/')->with('message', 'Thank you for your donation');
     }
 
 
