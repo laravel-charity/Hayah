@@ -1,14 +1,34 @@
 @extends('layouts.master-admin')
 
+@section('title','projects')
+
+@section('breadcrumb','projects')
 
 @section('content')
     
 <div class="col-xl-12">
     <div class="card">
         <div class="card-header">
-            <h5>All projects</h5>
-            <a href="{{url('/trash/project')}}" class="btn btn-warning float-right ml-2">Archive</a>
-            <a href="/admin/projects/create" class="btn btn-info float-right">Add new</a>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>All projects</h5>
+                </div>
+    
+                <div class="col-md-4">
+                    <form action="/admin/projects" class="d-inline">
+                    <input type="text" class="form-control w-75 d-inline-block"
+                     name="search" placeholder="Search">
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 4px">Search</button>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="{{url('/trash/project')}}" class="btn btn-warning float-right ml-2">Archive</a>
+                    <a href="/admin/projects/create" class="btn btn-info float-right">Add new</a>
+                </div>
+            </div>
+            
+            
         </div>
         <div class="card-body table-border-style">
             <div class="table-responsive">
@@ -18,11 +38,11 @@
                             <th>#</th>
                             <th>image</th>
                             <th>Name of project</th>
-                            <th>Description</th>
+                            {{-- <th>Description</th> --}}
                             <th>status</th>
                             <th>target_donations</th>
                             <th>starting_date</th>
-                            <th>category_id</th>
+                            <th>category</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,11 +59,11 @@
                                     {{ $project->name }}
                                 </a>
                             </td>
-                            <td>{{ $project->description }}</td>
+                            {{-- <td>{{ $project->description }}</td> --}}
                             <td>{{ $project->status }}</td>
                             <td>{{ $project->target_donations }}</td>
                             <td>{{ $project->starting_date }}</td>
-                            <td>{{ $project->category_id }}</td>
+                            <td>{{ $project->category->name }}</td>
                             <td>
                                 <a href="/admin/projects/{{ $project->id }}/edit" class="btn  btn-primary d-inline">Edit</a>
                                 

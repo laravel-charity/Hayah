@@ -1,5 +1,8 @@
 @extends('layouts.master-admin')
 
+@section('title','messages')
+
+@section('breadcrumb','messages')
 
 @section('content')
     <div class="col-xl-12">

@@ -1,5 +1,8 @@
 @extends('layouts.master-admin')
 
+@section('title','volunteer project')
+
+@section('breadcrumb','volunteer projects')
 
 @section('content')
     

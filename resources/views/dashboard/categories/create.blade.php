@@ -1,5 +1,8 @@
 @extends('layouts.master-admin')
 
+@section('title','create category')
+
+@section('breadcrumb','create category')
 
 @section('content')
     

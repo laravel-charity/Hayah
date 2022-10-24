@@ -1,5 +1,10 @@
 @extends('layouts.master-admin')
 
+
+@section('title','trash users')
+
+@section('breadcrumb','trash users')
+
 @section('content')
     
 <div class="col-xl-12">
@@ -27,7 +32,7 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $user->name }}</td>
                             <td>
-                                <a href="/restore/user/{{ $user->id }}" class="btn  btn-primary d-inline">Restore</a>
+                                <a href="/restore/{{ $user->id }}" class="btn  btn-primary d-inline">Restore</a>
                                 {{-- <form action="/force-delete/{{ $category->id }}" method="post" class="d-inline">
                                     @csrf
                                     @method("DELETE")

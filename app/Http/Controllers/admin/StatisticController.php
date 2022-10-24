@@ -14,14 +14,16 @@ use App\Http\Controllers\Controller;
 
 class StatisticController extends Controller
 {
-    public function statistics(){
-        $users =User::all();
+    public function statistics()
+    {
+        $users = User::all();
+        // dd($users);
         $donations = Donation::all();
-        $projects =Project::all();
-        $volunteers =Volunteer::all();
-        $contacts =Contact::all();
-        $newsLetters =Newsletter::all();
-        $categories =Category::all();
+        $projects = Project::all();
+        $volunteers = Volunteer::all();
+        $contacts = Contact::all();
+        $newsLetters = Newsletter::all();
+        $categories = Category::all();
 
         $projectsView = $projects->sortBy('starting_date')->take(3);
         $projectsView->values()->all();
@@ -29,7 +31,7 @@ class StatisticController extends Controller
         $donationsView = Donation::latest()->limit(3)->get();
 
         // dd($donationsView);
-        return view('admin',[
+        return view('admin', [
             'users'          => $users,
             'donations'      => $donations,
             'projects'       => $projects,

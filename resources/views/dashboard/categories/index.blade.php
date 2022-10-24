@@ -2,7 +2,10 @@
 
 
 @section('content')
-    
+  
+@section('breadcrumb','categories')
+
+@section('title','categories')
 
 <div class="col-xl-12">
     <div class="card">

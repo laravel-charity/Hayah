@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>@yield('title')</title>
+    <title>@yield('title','dashboard')</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -17,7 +17,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
@@ -41,7 +41,7 @@
                 <ul class="nav pcoded-inner-navbar ">
                    
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link "><span class="pcoded-micon"><i
+                        <a href="/dashboard" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
 
@@ -67,25 +67,6 @@
 
                     {{-- end-users --}}
                     
-                    {{-- categories --}}
-
-                    {{-- <li class="nav-item">
-                        <a href="/admin/categories" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span
-                                class="pcoded-mtext">All categories</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/admin/categories/create" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-file-text"></i></span><span class="pcoded-mtext">
-                                Add category</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('/trash/category')}}" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-align-justify"></i></span><span class="pcoded-mtext">
-                                Archive categories</span></a>
-                    </li> --}}
-                    {{-- end-categories --}}
-
                     {{-- projects --}}
                     <li class="nav-item pcoded-menu-caption">
                         <a href="/admin/projects" class="nav-link ">
@@ -106,32 +87,6 @@
                             </span>
                             </h5></a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a href="/admin/projects" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span
-                                class="pcoded-mtext">All projects</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/admin/projects/create" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-file-text"></i></span><span class="pcoded-mtext">
-                                Add project</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('/trash/project')}}" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-align-justify"></i></span><span class="pcoded-mtext">
-                                Archive projects</span></a>
-                    </li> --}}
-                    {{-- end-projects --}}
-
-                    {{-- <li class="nav-item pcoded-hasmenu">
-                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Projects</span></a>
-                        <ul class="pcoded-submenu">
-                            <li><a href="/admin/projects">All projects</a></li>
-                            <li><a href="/admin/projects/create">Add project</a></li>
-                            <li><a href="{{url('/trash/project')}}">Archive projects</a></li>
-                        </ul>
-                    </li> --}}
 
 
 
@@ -157,33 +112,9 @@
                     </li>
 
                     {{-- end-messages --}}
-                    {{-- <li class="nav-item pcoded-hasmenu">
-                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Contact</span></a>
-                        <ul class="pcoded-submenu">
-                            <li><a href="/contact/messages">All messages</a></li>
-                        </ul>
-                    </li> --}}
 
 
                     {{-- newsleeters --}}
-                    {{-- <li class="nav-item pcoded-menu-caption">
-                        <h5 class="text-primary"><label>Newsletters</label></h5>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="/newsleeters" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span
-                                class="pcoded-mtext">All subscribers</span></a>
-                    </li> --}}
-                    {{-- end-newsleeters --}}
-                    {{-- <li class="nav-item pcoded-hasmenu">
-                        <a href="/#!" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-box"></i></span><span class="pcoded-mtext">Newsletters</span></a>
-                        <ul class="pcoded-submenu">
-                            <li><a href="/newsleeters">All subscribers</a></li>
-                        </ul>
-                    </li> --}}
 
                     {{-- donations --}}
                     <li class="nav-item pcoded-menu-caption">
@@ -211,12 +142,8 @@
 
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-            {{-- <a href="#!" class="b-brand">
-                <!-- ========   change your logo hear   ============ -->
-                <img src="admin/images/logo.png" alt="" class="logo">
-                <img src="admin/images/logo-icon.png" alt="" class="logo-thumb">
-            </a> --}}
-            <a class="b-brand" href="index.html">
+            <a class="b-brand" href="/">
+                <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" style="width: 50px" alt="">
                 <span>
                     Hayat<br>
                     <small>Non-profit Organization</small>
@@ -225,31 +152,6 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                {{-- <li>
-                    <div class="dropdown drp-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="feather icon-user"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification">
-                            <div class="pro-head">
-                                <img src="admin/images/user/avatar-1.jpg" class="img-radius"
-                                    alt="User-Profile-Image">
-                                <span>John Doe</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
-                                    <i class="feather icon-log-out"></i>
-                                </a>
-                            </div>
-                            <ul class="pro-body">
-                                <li><a href="user-profile.html" class="dropdown-item"><i
-                                            class="feather icon-user"></i> Profile</a></li>
-                                <li><a href="email_inbox.html" class="dropdown-item"><i
-                                            class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i
-                                            class="feather icon-lock"></i> Lock Screen</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li> --}}
                 <li>
                     <div class="dropdown drp-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -257,15 +159,14 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
-                                <img src="{{ asset('images/2.png') }}" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
+                                <img src="{{ asset('storage/' . auth()->user()->image) }}" class="img-radius" alt="User-Profile-Image">
+                                <span>{{ auth()->user()->name }}</span>
                                 <a href="auth-signin.html" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
                                 <li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                                {{-- <li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li> --}}
                                 <li>
                                         <form method="post" action="/logout">
                                             @csrf
@@ -275,7 +176,6 @@
                                             </button>
                                         </form>
                                 </li>
-                                {{-- <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Logout</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -301,7 +201,7 @@
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html"><i
                                             class="feather icon-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="#!">@yield('breadcrumb', 'Dashboard Analytics')</a></li>
+                                <li class="breadcrumb-item"><a href="/dashboard">Dashboard Analytics</a> / @yield('breadcrumb')</a></li>
                             </ul>
                         </div>
                     </div>
@@ -317,7 +217,7 @@
     <!-- Required Js -->
     <script src="{{ asset('admin/js/vendor-all.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/js/pcoded.min.js"><') }}/script>
+    <script src="{{ asset('admin/js/pcoded.min.js') }}"></script>
 
     <!-- Apex Chart -->
     <script src="{{ asset('admin/js/plugins/apexcharts.min.js') }}"></script>

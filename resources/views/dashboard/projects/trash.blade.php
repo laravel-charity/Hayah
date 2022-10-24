@@ -1,5 +1,9 @@
 @extends('layouts.master-admin')
 
+@section('title','trash projects')
+
+@section('breadcrumb','trash projects')
+
 @section('content')
     
 <div class="col-xl-12">

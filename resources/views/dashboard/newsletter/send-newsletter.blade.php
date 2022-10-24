@@ -1,5 +1,8 @@
 @extends('layouts.master-admin')
 
+@section('title','send subscribers')
+
+@section('breadcrumb','send newsletter')
 
 @section('content')
     <div class="card">
