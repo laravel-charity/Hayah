@@ -13,12 +13,15 @@ class VolunteerController extends Controller
 
     public function create()
     {
-        if (Auth::user()->volunteer) {
-            return redirect('projects')->with('message', 'Please choose the project that you would like to  participate in it');
-        } else if (Auth::user()) {
-            return view("projects.volunteer");
-        } else {
-            return redirect('register')->with('message', 'please join us to become a Volunteer');
+        if(Auth::user()){
+            if (Auth::user()->volunteer) {
+                return redirect('projects')->with('message', 'Please choose the project that you would like to volunteer in');
+            } else if (Auth::user()) {
+                return view("projects.volunteer");
+            }
+        }
+         else {
+            return redirect('register')->with('message', 'Please join us to become a Volunteer');
         }
     }
 
@@ -58,15 +61,15 @@ class VolunteerController extends Controller
                         'project_id' => $id,
                         'volunteer_id'   => $user->volunteer->id
                     ]);
-                    return redirect('profile')->with('message', 'thank you for your time');
+                    return redirect('profile')->with('message', 'Thank you for your volunteering!');
                 } else {
-                    return back()->with('message', 'you already volunteered in this project');
+                    return back()->with('message', 'You already volunteered in this project');
                 }
             } else if ($user) {
                 return view("projects.volunteer");
             } 
         }else {
-            return redirect('register')->with('message', 'please join us to become a Volunteer');
+            return redirect('register')->with('message', 'Please join us to become a Volunteer');
         }
 
     }

@@ -3,11 +3,7 @@
 @section('title' , 'profile')
 
 @section('content')
-@if(session()->has('message'))
-    <div class="alert alert-danger">
-        {{ session()->get('message') }}
-    </div>
-@endif
+
 <div class="container">
     
     <form class="custom-form volunteer-form my-5 mb-lg-0 text-center" action="/updatepass" method="post" role="form">

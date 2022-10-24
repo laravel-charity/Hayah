@@ -3,11 +3,6 @@
 @section('title', 'Sign up')
 
 @section('content')
-@if(session()->has('message'))
-    <div class="alert alert-success text-center">
-        {{ session()->get('message') }}
-    </div>
-@endif
     <div class="container">
         <form class="custom-form volunteer-form mt-5 mb-0 pb-0" action="/users/store" method="post" role="form">
             @csrf

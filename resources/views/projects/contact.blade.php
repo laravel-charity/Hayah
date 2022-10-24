@@ -2,16 +2,7 @@
 
 @section('title', 'Contact us')
 @section('content')
-    @if (session()->has('message'))
-        <div class="alert alert-success text-center">
-            {{ session()->get('message') }}
-        </div>
-    @endif
-    @if (session()->has('error_message'))
-        <div class="alert alert-danger text-center">
-            {{ session()->get('error_message') }}
-        </div>
-    @endif
+
     <section class="contact-section section-padding" id="section_6">
         <div class="container">
             <div class="row">
@@ -45,8 +36,8 @@
                             <p class="d-flex mb-2">
                                 <i class="bi-telephone me-2"></i>
 
-                                <a href="tel: 305-240-9671">
-                                    305-240-9671
+                                <a href="tel: 077-777-7777">
+                                    077-777-7777
                                 </a>
                             </p>
 
@@ -54,7 +45,7 @@
                                 <i class="bi-envelope me-2"></i>
 
                                 <a href="mailto:info@yourgmail.com">
-                                    Admin@charity.org
+                                    Admin@hayat.org
                                 </a>
                             </p>
 
@@ -69,7 +60,7 @@
                         <h2>Contact form</h2>
 
                         <p class="mb-4">Or, you can just send an email:
-                            <a href="#">info@charity.org</a>
+                            <a href="#">info@hayat.org</a>
                         </p>
                         <div class="row">
                             {{-- <div class="col-lg-6 col-md-6 col-12">

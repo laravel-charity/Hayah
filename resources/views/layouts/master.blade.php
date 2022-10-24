@@ -72,10 +72,7 @@
                                 href="/contact">Contact</a>
 
                         </li>
-
-
-
-                </ul>
+                    </ul>
 
 
                     <ul class="navbar-nav ms-auto">
@@ -85,19 +82,23 @@
 
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img
-                                    src="{{ asset('storage/' . auth()->user()->image) }}" class="img-fluid avatar-image"
+                            <a class="nav-link  dropdown-toggle " href="#" id="navbarLightDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown"  data-bs-display="static"  aria-expanded="false"> <img
+                                    src="{{ asset('storage/' . auth()->user()->image) }}" class="img-fluid avatar-image" style="width:50px; height:50px"
                                     alt=""></a>
 
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink" id="profilemenu">
 
-                                <li><a class="dropdown-item" href="/profile">View Profile</a></li>
-                                <li> <a class="dropdown-item" href="/editProfile"> Eidt Profile</a> </li>
+                                @can('admin')
+                                <li><a class="dropdown-item" style="font-size:15px;" href="/dashboard">Dashboard</a></li>
+                                @else
+                                <li><a class="dropdown-item" style="font-size:15px;" href="/profile">View Profile</a></li>
+                                <li><a class="dropdown-item" style="font-size:15px;" href="/editProfile">Edit Profile</a></li>
+                                @endcan
                                 @if (Auth::user()->google_id == null)
 
                                     <li>
-                                        <a class="dropdown-item" style="font-size:17px;" href="/changepass">Change
+                                        <a class="dropdown-item" style="font-size:15px;" href="/changepass">Change
                                             password</a>
                                     </li>
 
@@ -105,7 +106,7 @@
                                 <li>
                                     <form method="post" action="/logout">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">
+                                        <button type="submit" class="dropdown-item text-danger pt-2" style="font-size:15px;">
                                             Logout
                                         </button>
                                     </form>
@@ -113,17 +114,24 @@
 
                             </ul>
                         </li>
-                    @else
-                        <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="login">Login</a>
-                        </li>
-
-
-                    @endauth
-                </ul>
+                        @else
+                            <li class="nav-item ms-3">
+                                <a class="nav-link custom-btn custom-border-btn btn" href="login">Login</a>
+                            </li>
+                        @endauth
+                    </ul>
             </div>
     </nav>
-
+    @if (session()->has('message'))
+        <div class="alert alert-success text-center">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+    @if (session()->has('error_message'))
+        <div class="alert alert-danger text-center">
+            {{ session()->get('error_message') }}
+        </div>
+    @endif
 
     @yield('content')
 

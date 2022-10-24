@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row d-flex justify-content-center align-items-start ">
                 <div class="col-lg-4 col-md-4 col-12 text-center ">
-                    <img width="300px" src="{{ asset('storage/' . $userData->image) }} "
+                    <img width="300px"  style="object-fit:cover;height:300px" src="{{ asset('storage/' . $userData->image) }} "
                         class="ms-lg-auto bg-light shadow-lg img-fluid rounded-5" alt="">
                 </div>
 
@@ -25,12 +25,14 @@
 
                         <p> <b> Email: </b> {{ $userData->email }}</p>
                         <p> <b> Donations: </b> {{ $donationCount }} </p>
-                        <p> <b> Amount: </b> {{ $donationAmount }} Jd</p>
+                        <p> <b> Amount Donated: </b> {{ $donationAmount }} Jd</p>
                         @if ($userData->volunteer != null)
                             <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>City</b>:{{ $userData->volunteer->city }}</p>
                             <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>Phone</b>:{{ $userData->volunteer->phone }}</p>
+                            @if($userData->volunteer->description )
                             <p class="text-muted mb-lg-4 mb-md-4 ml-3"><b>About</b>:{{ $userData->volunteer->description }}
                             </p>
+                            @endif
                         @endif
 
 

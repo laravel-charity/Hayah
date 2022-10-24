@@ -27,7 +27,7 @@
                             <div class="custom-text-box mb-lg-0">
                                 <h5 class="mb-3">Our Mission</h5>
 
-                                <p>help the poor people</p>
+                                <p>Help poor people</p>
 
                                 <ul class="custom-list mt-2">
                                     <li class="custom-list-item d-flex">
@@ -47,7 +47,7 @@
                             <div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0">
                                 <div class="counter-thumb">
                                     <div class="d-flex">
-                                        <span class="counter-number" data-from="1" data-to="2009" data-speed="1000"></span>
+                                        <span class="counter-number" data-from="1" data-to="2022" data-speed="1000"></span>
                                         <span class="counter-number-text"></span>
                                     </div>
 
@@ -56,8 +56,8 @@
 
                                 <div class="counter-thumb mt-4">
                                     <div class="d-flex">
-                                        <span class="counter-number" data-from="1" data-to="120" data-speed="1000"></span>
-                                        <span class="counter-number-text">B</span>
+                                        <span class="counter-number" data-from="1" data-to="{{$donations->sum('amount') / 1000}}" data-speed="1000"></span>
+                                        <span class="counter-number-text">K</span>
                                     </div>
 
                                     <span class="counter-text">Donations</span>
@@ -80,6 +80,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <div id="demo" class="carousel slide" data-ride="carousel">
+    
 
 
 
@@ -90,19 +91,19 @@
 
 
 
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleControls" class="carousel slide container" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="cards-wrapper">
                             <div class="card">
                                 <div class="card-image">
                                     <a>
-                                        <img src="images/Ahmad.png" alt="img.jpg" />
+                                        <img src="images/Ahmad.png" alt="img.jpg" style="object-fit: cover"/>
                                     </a>
                                 </div>
                                 <div class="card-description">
                                     <h3>Ahmad Salman</h3>
-                                    <p>Full Stack Devolepr</p>
+                                    <p>Full Stack Developer</p>
 
                                 </div>
                             </div>
@@ -110,12 +111,12 @@
                                 <div class="card">
                                     <div class="card-image">
                                         <a>
-                                            <img src="images/Duaa.png" alt="img.jpg" />
+                                            <img src="images/Duaa.png" alt="img.jpg" style="object-fit: cover; object-position:top"/>
                                         </a>
                                     </div>
                                     <div class="card-description">
-                                        <h3>Duaa Nwaas</h3>
-                                        <p>Full Stack Devolepr</p>
+                                        <h3>Duaa Nawwas</h3>
+                                        <p>Full Stack Developer</p>
 
                                     </div>
                                 </div>
@@ -127,12 +128,12 @@
                                 <div class="card">
                                     <div class="card-image">
                                         <a>
-                                            <img src="images/mohammed.png" alt="img.jpg" />
+                                            <img src="images/mohammed.png" alt="img.jpg" style="object-fit: cover; object-position:top"/>
                                         </a>
                                     </div>
                                     <div class="card-description">
                                         <h3>Mohammed Khalel</h3>
-                                        <p>Full Stack Devolepr</p>
+                                        <p>Full Stack Developer</p>
 
                                     </div>
                                 </div>
@@ -144,12 +145,12 @@
                             <div class="card">
                                 <div class="card-image">
                                     <a>
-                                        <img src="images/sara.png" alt="img.jpg" />
+                                        <img src="images/sara.png" alt="img.jpg" style="object-fit: cover; object-position:top"/>
                                     </a>
                                 </div>
                                 <div class="card-description">
                                     <h3>Sara Abed</h3>
-                                    <p>Full Stack Devolepr</p>
+                                    <p>Full Stack Developer</p>
 
                                 </div>
                             </div>
@@ -159,12 +160,12 @@
                                 <div class="card">
                                     <div class="card-image">
                                         <a>
-                                            <img src="images/jafer.png" alt="img.jpg" />
+                                            <img src="images/jafer.png" alt="img.jpg" style="object-fit: cover; object-position:top"/>
                                         </a>
                                     </div>
                                     <div class="card-description">
                                         <h3>Jafar AL-Dakhily</h3>
-                                        <p>Full Stack Devolepr</p>
+                                        <p>Full Stack Developer</p>
 
                                     </div>
                                 </div>
@@ -175,12 +176,12 @@
                                 <div class="card">
                                     <div class="card-image">
                                         <a>
-                                            <img src="images/ibrahem.png" alt="img.jpg" />
+                                            <img src="images/ibrahem.png" alt="img.jpg" style="object-fit: cover; object-position:top"/>
                                         </a>
                                     </div>
                                     <div class="card-description">
                                         <h3>Ibrahem jebreen</h3>
-                                        <p>Full Stack Devolepr</p>
+                                        <p>Full Stack Developer</p>
 
                                     </div>
                                 </div>
@@ -193,12 +194,12 @@
                             <div class="card">
                                 <div class="card-image">
                                     <a>
-                                        <img src="images/1.png.png" alt="img.jpg" />
+                                        <img src="images/1.png.png" alt="img.jpg" style="object-fit: cover; object-position:top"/>
                                     </a>
                                 </div>
                                 <div class="card-description">
                                     <h3>Osama Dasoky</h3>
-                                    <p>Full Stack Devolepr</p>
+                                    <p>Full Stack Developer</p>
 
                                 </div>
                             </div>
