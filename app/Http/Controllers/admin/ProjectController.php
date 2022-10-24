@@ -43,7 +43,7 @@ class ProjectController extends Controller
         $request->validate([
             "name" => "required",
             "description" => "required",
-            // "image" => "required|image|mimes:png,jpg|max:2048",
+            "image" => "required|image|mimes:png,jpg|max:2048",
             "target_donations" => "required",
             "starting_date" => "required",
             "status" => "required",
