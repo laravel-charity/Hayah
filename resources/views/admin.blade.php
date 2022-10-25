@@ -217,7 +217,7 @@
                                     <tr>
                                         <td>{{ @$donation->user->name }}</td>
                                         <td style="width: 200px; white-space:inherit;">{{ $donation->project->name }}</td>
-                                        <td>{{ $donation->amount }}</td>
+                                        <td>{{ $donation->amount }} Jd</td>
                                         <td class="text-right">{{ $donation->created_at }}</td>
                                     </tr>
                                 @endforeach

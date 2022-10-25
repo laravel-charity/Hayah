@@ -21,7 +21,7 @@
                             <th>Name</th>
                             <th>phone</th>
                             <th>city</th>
-                            <th>status</th>
+                            {{-- <th>status</th> --}}
                             <th>description</th>
                             {{-- <th>Action</th> --}}
                         </tr>
@@ -41,7 +41,7 @@
                             </td>
                             <td>{{ $volunteer->phone }}</td>
                             <td>{{ $volunteer->city }}</td>
-                            <td>{{ $volunteer->status }}</td>
+                            {{-- <td>{{ $volunteer->status }}</td> --}}
                             <td>{{ $volunteer->description }}</td>
                             {{-- @if ($volunteer->status !== 'approve')
                             <td>
