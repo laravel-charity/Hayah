@@ -42,7 +42,7 @@
                         @foreach ($donations as $donation)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $donation->amount }}</td>
+                            <td>{{ $donation->amount }} Jd</td>
                             <td>{{ $donation->project->name }}</td>
                             <td>{{ $donation->name }}</td>
                             <td>{{ $donation->email }}</td>

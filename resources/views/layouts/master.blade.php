@@ -94,7 +94,6 @@
                                 @else
                                 <li><a class="dropdown-item" style="font-size:15px;" href="/profile">View Profile</a></li>
                                 <li><a class="dropdown-item" style="font-size:15px;" href="/editProfile">Edit Profile</a></li>
-                                @endcan
                                 @if (Auth::user()->google_id == null)
 
                                     <li>
@@ -103,6 +102,7 @@
                                     </li>
 
                                 @endif
+                                @endcan
                                 <li>
                                     <form method="post" action="/logout">
                                         @csrf
